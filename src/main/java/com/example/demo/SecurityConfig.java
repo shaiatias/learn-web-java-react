@@ -42,7 +42,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic()
                 .and()
-                .sessionManagement().disable();
+                .sessionManagement();
     }
 
     @Override

@@ -1,7 +1,5 @@
 package com.example.demo.domain;
 
-import java.util.Objects;
-
 public class UserLoginRequest {
     private String email;
     private String password;
@@ -30,17 +28,4 @@ public class UserLoginRequest {
         this.password = password;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        UserLoginRequest that = (UserLoginRequest) o;
-        return Objects.equals(email, that.email) &&
-                Objects.equals(password, that.password);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(email, password);
-    }
 }

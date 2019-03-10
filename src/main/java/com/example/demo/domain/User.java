@@ -4,6 +4,7 @@ import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
 public class User {
+
     @Id
     public ObjectId _id;
     public String email;
