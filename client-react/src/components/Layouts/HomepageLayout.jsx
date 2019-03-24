@@ -4,6 +4,7 @@ import "./HomepageLayout.css";
 
 import Header from "../Header";
 import Footer from "../Footer";
+import {Container} from "reactstrap";
 
 class HomepageLayout extends Component {
 
@@ -13,11 +14,10 @@ class HomepageLayout extends Component {
 
 		return (
 			<div>
-
 				<Header/>
-				<div className={"content-min-height p-4"}>
+				<Container className={"content-min-height"}>
 					{children}
-				</div>
+				</Container>
 				<Footer/>
 			</div>
 		)
