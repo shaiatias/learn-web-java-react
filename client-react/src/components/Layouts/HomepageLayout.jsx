@@ -1,26 +1,27 @@
-import React, {Component} from "react";
+import React, {Component, Fragment} from "react";
+
+import "./HomepageLayout.css";
 
 import Header from "../Header";
 import Footer from "../Footer";
 
 class HomepageLayout extends Component {
 
-    render() {
+	render() {
 
-        const { children } = this.props;
+		const {children} = this.props;
 
-        return (
-            <div>
+		return (
+			<div>
 
-                <Header />
-
-                {children}
-
-                <Footer />
-
-            </div>
-        )
-    }
+				<Header/>
+				<div className={"content-min-height p-4"}>
+					{children}
+				</div>
+				<Footer/>
+			</div>
+		)
+	}
 
 }
 
