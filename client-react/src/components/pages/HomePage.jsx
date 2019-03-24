@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import HomepageLayout from "../Layouts/HomepageLayout";
 import { addItemToCart } from "../../redux/actions/cart";
+import NewItemsCarousel from "../NewItemsCarousel";
 
 class HomePage extends Component {
 	addItem = () => {
@@ -15,8 +16,7 @@ class HomePage extends Component {
 	render() {
 		return (
 			<HomepageLayout>
-				click here to add item to cart
-				<button onClick={this.addItem}>add</button>
+				<NewItemsCarousel />
 			</HomepageLayout>
 		);
 	}
