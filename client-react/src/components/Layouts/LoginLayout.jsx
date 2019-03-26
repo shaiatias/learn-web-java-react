@@ -9,7 +9,7 @@ class LoginLayout extends Component {
         return (
             <div>
                 <h1>Login layout</h1>
-
+				
                 <section>
                     {children}
                 </section>

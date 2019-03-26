@@ -1,14 +1,13 @@
 import React from "react";
 import Container from "reactstrap/es/Container";
-import {Col, Nav, NavItem, NavLink, Row} from "reactstrap";
+import { Col, Nav, NavItem, NavLink, Row } from "reactstrap";
+import "./Footer.css";
 
 export default () => (
-	<div className={"bg-dark"}>
+	<div className={"bg-dark footer"}>
 		<Container className={"py-5 px-4"}>
 			<Row>
-				<Col md={3}>
-					Icon
-				</Col>
+				<Col md={3}>Icon</Col>
 				<Col md={3}>
 					<Nav vertical>
 						<NavItem>
@@ -54,4 +53,4 @@ export default () => (
 			</Row>
 		</Container>
 	</div>
-)
+);
