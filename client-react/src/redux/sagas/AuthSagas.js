@@ -10,12 +10,15 @@ import { RESET_ALL } from "../actions/users";
 
 const Api = {
 	*login(email, password) {
+
+		const creds = btoa(`${email}:${password}`);
+
 		const res = yield fetch("/auth/login", {
 			method: "POST",
 			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({ email, password })
+				"Content-Type": "application/json",
+				"Authorization": `Basic ${creds}`
+			}
 		});
 
 		if (res.ok) {

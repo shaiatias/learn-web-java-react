@@ -1,13 +1,11 @@
 package com.example.demo.rest;
 
 import com.example.demo.domain.User;
-import com.example.demo.domain.UserLoginRequest;
 import com.example.demo.domain.UserRegisterRequest;
 import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,8 +25,13 @@ public class AuthenticationController {
 
     @PreAuthorize("isAuthenticated()")
     @PostMapping(value = "/login")
-    public Mono<ResponseEntity<String>> login(HttpServletRequest request, HttpServletResponse response, @RequestBody UserLoginRequest body) {
-        return Mono.justOrEmpty(ResponseEntity.ok().body("OK"));
+    public Mono<ResponseEntity<User>> login(HttpServletRequest request, HttpServletResponse response) {
+        String name = request.getUserPrincipal().getName();
+        User user = userService.getUserByEmail(name);
+        if( user == null){
+            return Mono.justOrEmpty(ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null));
+        }
+        return Mono.justOrEmpty(ResponseEntity.ok().body(user));
     }
 
     @PostMapping("/logout")
