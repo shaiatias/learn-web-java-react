@@ -1,22 +1,22 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
+import { Container } from "reactstrap";
+
+import "./LoginLayout.css";
 
 class LoginLayout extends Component {
+	render() {
+		const { children } = this.props;
 
-    render() {
-
-        const {children} = this.props;
-
-        return (
-            <div>
-                <h1>Login layout</h1>
-				
-                <section>
-                    {children}
-                </section>
-            </div>
-        )
-    }
-
+		return (
+			<Container className="h-100">
+				<div className="d-flex justify-content-center h-100">
+					<div className="form-content">
+						{children}
+					</div>
+				</div>
+			</Container>
+		);
+	}
 }
 
 export default LoginLayout;

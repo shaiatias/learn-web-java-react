@@ -14,6 +14,10 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static com.example.demo.domain.Roles.ROLE_ADMIN;
+import static com.example.demo.domain.Roles.ROLE_USER;
 
 @Component
 public class MongoUserDetailsService implements UserDetailsService {
@@ -37,6 +41,7 @@ public class MongoUserDetailsService implements UserDetailsService {
 
         admin.setEmail("admin");
         admin.setPassword(passwordEncoder.encode("admin"));
+        admin.setRoles(Arrays.asList(ROLE_ADMIN, ROLE_USER));
 
         repository.save(admin);
     }
@@ -50,11 +55,8 @@ public class MongoUserDetailsService implements UserDetailsService {
             throw new UsernameNotFoundException("user not found");
         }
 
-        List<SimpleGrantedAuthority> authorities = Arrays.asList(
-                new SimpleGrantedAuthority("USER"),
-                new SimpleGrantedAuthority("ADMIN")
-        );
+        List<SimpleGrantedAuthority> roles = user.getRoles().stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList());
 
-        return new User(user.getEmail(), user.getPassword(), authorities);
+        return new User(user.getEmail(), user.getPassword(), roles);
     }
 }

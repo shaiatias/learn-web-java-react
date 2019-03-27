@@ -3,42 +3,50 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import LoginLayout from "../Layouts/LoginLayout";
 
+import { requestLogin } from "../../redux/actions/authentication";
+
 class LoginPage extends Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			username: "",
-			password: "",
-			submitted: false
-		};
-	}
+	state = {
+		email: "",
+		password: "",
+		submitted: false
+	};
 
-	handleChange(e) {}
+	handleChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
 
-	handleSubmit(e) {}
+	handleSubmit = e => {
+		e.preventDefault();
+		const { email, password } = this.state;
+		this.props.requestLogin(email, password);
+	};
 
 	render() {
-		const { username, password, submitted } = this.state;
+		const { email, password, submitted } = this.state;
 		return (
 			<LoginLayout>
 				<form name="form" onSubmit={this.handleSubmit}>
 					<div
 						className={
 							"form-group" +
-							(submitted && !username ? " has-error" : "")
+							(submitted && !email ? " has-error" : "")
 						}
 					>
-						<label htmlFor="username">Username</label>
+						<label htmlFor="email">Email</label>
 						<input
+							autoFocus="true"
 							type="text"
 							className="form-control"
-							name="username"
-							value={username}
+							name="email"
+							value={email}
 							onChange={this.handleChange}
 						/>
-						{submitted && !username && (
+						{submitted && !email && (
 							<div className="help-block">
-								Username is required
+								Email is required
 							</div>
 						)}
 					</div>
@@ -76,7 +84,10 @@ class LoginPage extends Component {
 
 const mapStateToProps = state => ({});
 
-const mapDispatchToProps = dispatch => ({});
+const mapDispatchToProps = dispatch => ({
+	requestLogin: (email, password) =>
+		dispatch(requestLogin(email, password))
+});
 
 export default connect(
 	mapStateToProps,
