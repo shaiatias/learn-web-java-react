@@ -52,7 +52,7 @@ export function* saveProductFlow(action) {
 			tags
 		} = action.payload;
 		yield call(
-			Api.register,
+			Api.saveProduct,
 			name,
 			brand,
 			description,
