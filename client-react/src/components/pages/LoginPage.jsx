@@ -20,6 +20,7 @@ class LoginPage extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
+		this.setState({ ...this.state, submitted: true });
 		const { email, password } = this.state;
 		this.props.requestLogin(email, password);
 	};
@@ -45,9 +46,7 @@ class LoginPage extends Component {
 							onChange={this.handleChange}
 						/>
 						{submitted && !email && (
-							<div className="help-block">
-								Email is required
-							</div>
+							<div className="help-block">Email is required</div>
 						)}
 					</div>
 					<div
@@ -85,8 +84,7 @@ class LoginPage extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-	requestLogin: (email, password) =>
-		dispatch(requestLogin(email, password))
+	requestLogin: (email, password) => dispatch(requestLogin(email, password))
 });
 
 export default connect(

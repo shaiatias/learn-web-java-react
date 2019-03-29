@@ -1,34 +1,201 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
 import HomepageLayout from "../Layouts/HomepageLayout";
 
+import { saveProduct } from "../../redux/actions/product";
+
 class SingleItemPage extends Component {
+	state = {
+		name: "",
+		brand: "",
+		description: "",
+		imageUrl: "",
+		availableSizes: [],
+		categories: [],
+		price: "",
+		tags: [],
+		submitted: false
+	};
 
-    render() {
+	handleChange = e => {
+		this.setState({
+			[e.target.name]: e.target.value
+		});
+	};
 
-        return (
-            <HomepageLayout>
+	handleSubmit = e => {
+		e.preventDefault();
+		this.setState({ ...this.state, submitted: true });
+		const {
+			name,
+			brand,
+			description,
+			imageUrl,
+			availableSizes,
+			categories,
+			price,
+			tags
+		} = this.state;
 
-                single item
+		this.props.saveProduct(
+			name,
+			brand,
+			description,
+			imageUrl,
+			availableSizes,
+			categories,
+			price,
+			tags
+		);
+	};
 
-                { JSON.stringify(this.props.match) }
+	render() {
+		const {
+			name,
+			brand,
+			description,
+			imageUrl,
+			availableSizes,
+			categories,
+			price,
+			tags,
+			submitted
+		} = this.state;
 
-            </HomepageLayout>
-        )
-    }
-
+		return (
+			<HomepageLayout>
+				<form name="form" onSubmit={this.handleSubmit}>
+					<div
+						className={
+							"form-group" +
+							(submitted && !name ? " has-error" : "")
+						}
+					>
+						<label htmlFor="name">Product name</label>
+						<input
+							autoFocus={true}
+							type="text"
+							className="form-control"
+							name="name"
+							value={name}
+							onChange={this.handleChange}
+						/>
+						{submitted && !name && (
+							<div className="help-block">Name is required</div>
+						)}
+					</div>
+					<div
+						className={
+							"form-group" +
+							(submitted && !brand ? " has-error" : "")
+						}
+					>
+						<label htmlFor="brand">Brand</label>
+						<input
+							type="text"
+							className="form-control"
+							name="brand"
+							value={brand}
+							onChange={this.handleChange}
+						/>
+						{submitted && !brand && (
+							<div className="help-block">Brand is required</div>
+						)}
+					</div>
+					<div
+						className={
+							"form-group" +
+							(submitted && !description ? " has-error" : "")
+						}
+					>
+						<label htmlFor="description">Description</label>
+						<input
+							type="description"
+							className="form-control"
+							name="description"
+							value={description}
+							onChange={this.handleChange}
+						/>
+						{submitted && !description && (
+							<div className="help-block">
+								Description is required
+							</div>
+						)}
+					</div>
+					<div
+						className={
+							"form-group" +
+							(submitted && !imageUrl ? " has-error" : "")
+						}
+					>
+						<label htmlFor="imageUrl">Image url</label>
+						<input
+							type="imageUrl"
+							className="form-control"
+							name="imageUrl"
+							value={imageUrl}
+							onChange={this.handleChange}
+						/>
+						{submitted && !imageUrl && (
+							<div className="help-block">
+								Image url is required
+							</div>
+						)}
+					</div>
+					<FormGroup>
+						<Label for="categories">Select categories</Label>
+						<Input
+							type="select"
+							name="categories"
+							multiple
+							onChange={this.handleChange}
+						>
+							<option>1</option>
+							<option>2</option>
+							<option>3</option>
+							<option>4</option>
+							<option>5</option>
+						</Input>
+					</FormGroup>
+					<div className="form-group">
+						<button className="btn btn-primary">SAVE</button>
+					</div>
+				</form>
+			</HomepageLayout>
+		);
+	}
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({});
 
-});
-
-const mapDispatchToProps = (dispatch) => ({
-
+const mapDispatchToProps = dispatch => ({
+	saveProduct: (
+		name,
+		brand,
+		description,
+		imageUrl,
+		availableSizes,
+		categories,
+		price,
+		tags
+	) => {
+		dispatch(
+			saveProduct(
+				name,
+				brand,
+				description,
+				imageUrl,
+				availableSizes,
+				categories,
+				price,
+				tags
+			)
+		);
+	}
 });
 
 export default connect(
-    mapStateToProps,
-    mapDispatchToProps
+	mapStateToProps,
+	mapDispatchToProps
 )(SingleItemPage);
-
