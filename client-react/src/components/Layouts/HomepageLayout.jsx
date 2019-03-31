@@ -1,10 +1,10 @@
-import React, {Component, Fragment} from "react";
+import React, {Component} from "react";
+import {Container} from "reactstrap";
 
 import "./HomepageLayout.css";
 
 import Header from "../Header";
 import Footer from "../Footer";
-import {Container} from "reactstrap";
 
 class HomepageLayout extends Component {
 
@@ -13,7 +13,7 @@ class HomepageLayout extends Component {
 		const {children} = this.props;
 
 		return (
-			<div>
+			<div className={"page-wrapper"}>
 				<Header/>
 				<Container className={"content-min-height"}>
 					{children}
