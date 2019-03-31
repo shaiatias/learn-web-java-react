@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from "react";
-// import {NavLink} from "react-router-dom";
 import {connect} from "react-redux";
+import * as PropTypes from "prop-types";
 import {
 	Collapse, Container,
 	DropdownItem,
@@ -17,7 +17,6 @@ import {
 
 import {requestLogout} from "../redux/actions/authentication";
 import {getCartItemCount} from "../redux/reducers/CartReducer";
-import * as PropTypes from "prop-types";
 
 class Header extends Component {
 
@@ -25,7 +24,7 @@ class Header extends Component {
 		loggedIn: PropTypes.any,
 		requestLogout: PropTypes.any,
 		cartCount: PropTypes.any
-	}
+	};
 
 	state = {
 		isOpen: false
@@ -40,7 +39,7 @@ class Header extends Component {
 		return (
 			<div className="bg-light">
 				<Container>
-					<Navbar color="light" light expand="sm">
+					<Navbar color="light" light expand="sm" className={"px-0"}>
 						<NavbarBrand href="/">The Old Asos</NavbarBrand>
 						<NavbarToggler onClick={this.toggle}/>
 						<Collapse isOpen={this.state.isOpen} navbar>

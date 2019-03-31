@@ -10,12 +10,12 @@ class HomepageLayout extends Component {
 
 	render() {
 
-		const {children} = this.props;
+		const {children, className} = this.props;
 
 		return (
 			<div className={"page-wrapper"}>
 				<Header/>
-				<Container className={"content-min-height"}>
+				<Container className={`content-min-height ${className}`}>
 					{children}
 				</Container>
 				<Footer/>
