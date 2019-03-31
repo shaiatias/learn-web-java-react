@@ -1,11 +1,12 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Button, Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import React, {Component} from "react";
+import {connect} from "react-redux";
+import {FormGroup, Input, Label} from "reactstrap";
 import HomepageLayout from "../Layouts/HomepageLayout";
 
-import { saveProduct } from "../../redux/actions/product";
+import {saveProduct} from "../../redux/actions/product";
 
 class SingleItemPage extends Component {
+
 	state = {
 		name: "",
 		brand: "",
@@ -26,7 +27,7 @@ class SingleItemPage extends Component {
 
 	handleSubmit = e => {
 		e.preventDefault();
-		this.setState({ ...this.state, submitted: true });
+		this.setState({ submitted: true });
 		const {
 			name,
 			brand,
