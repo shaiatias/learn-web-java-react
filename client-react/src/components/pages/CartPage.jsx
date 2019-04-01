@@ -1,22 +1,23 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {Button, Col, Row} from "reactstrap";
+import {NavLink} from "react-router-dom";
 
 import HomepageLayout from "../Layouts/HomepageLayout";
 import {addItemToCart, clearCart, updateItemQuantity} from "../../redux/actions/cart";
 import CartItems from "../CartItems";
 import CartSummary from "../CartSummary";
-import {getCartItemsArr} from "../../redux/reducers/CartReducer";
+import {getCartItemsArr, getCartPrice} from "../../redux/reducers/CartReducer";
 
 
 class CartPage extends Component {
 
 	render() {
 
-		const {items, clearCart} = this.props;
+		const {items, clearCart, shipping, totalBeforeShipping} = this.props;
 
 		return (
-			<HomepageLayout className={"py-3"}>
+			<HomepageLayout className="py-3">
 
 				<h1>My Cart</h1>
 
@@ -27,12 +28,14 @@ class CartPage extends Component {
 					</Col>
 					<Col md={4}>
 						<h2>Summary</h2>
-						<Row className={"my-4"}>
-							<CartSummary />
+						<Row className="my-4">
+							<Col>
+								<CartSummary shipping={shipping} totalBeforeShipping={totalBeforeShipping} />
+							</Col>
 						</Row>
 						<Row>
 							<Button onClick={clearCart}>Clear Cart</Button>{" "}
-							<Button>Proceed To Checkout</Button>
+							<NavLink to="/checkout">Proceed To Checkout</NavLink>
 						</Row>
 					</Col>
 				</Row>
@@ -43,7 +46,9 @@ class CartPage extends Component {
 }
 
 const mapStateToProps = state => ({
-	items: getCartItemsArr(state.cart)
+	items: getCartItemsArr(state.cart),
+	shipping: state.cart.shipping,
+	totalBeforeShipping: getCartPrice(state.cart),
 });
 
 const mapDispatchToProps = dispatch => ({

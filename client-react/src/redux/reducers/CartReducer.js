@@ -19,7 +19,8 @@ const initialState = {
 			totalPrice: "30.00",
 			description: "blah"
 		}
-	}
+	},
+	shipping: 15
 };
 
 export default (state = initialState, action) => {
@@ -73,6 +74,13 @@ export default (state = initialState, action) => {
 export const getCartItemCount = state => {
 	return Object.values(state.items).reduce(
 		(acc, item) => acc + item.quantity,
+		0
+	);
+};
+
+export const getCartPrice = state => {
+	return Object.values(state.items).reduce(
+		(acc, item) => acc + Number(item.totalPrice),
 		0
 	);
 };

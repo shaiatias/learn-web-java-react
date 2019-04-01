@@ -6,6 +6,7 @@ import LoginPage from "./components/pages/LoginPage";
 import SingleItemPage from "./components/pages/SingleItemPage";
 import RegisterPage from "./components/pages/RegisterPage";
 import CartPage from "./components/pages/CartPage";
+import CheckoutPage from "./components/pages/CheckoutPage";
 
 const routes = auth => (
 	<Fragment>
@@ -16,6 +17,7 @@ const routes = auth => (
 			<Route exact path="/login" component={LoginPage} />
 			<Route exact path="/register" component={RegisterPage} />
 			<Route exact path="/cart" component={CartPage} />
+			<Route exact path="/checkout" component={CheckoutPage} />
 		</Switch>
 	</Fragment>
 );
