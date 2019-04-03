@@ -1,4 +1,4 @@
-import { SAVE_PRODUCT } from "../actions/product";
+import { CREATE_PRODUCT_SUCCESS } from "../actions/product";
 
 const initialState = {
 	name: "",
@@ -13,7 +13,7 @@ const initialState = {
 
 export default (state = initialState, action) => {
 	switch (action.type) {
-		case SAVE_PRODUCT:
+		case CREATE_PRODUCT_SUCCESS:
 			return {
 				...state
 			};

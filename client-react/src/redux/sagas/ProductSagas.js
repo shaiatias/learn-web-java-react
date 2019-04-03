@@ -1,9 +1,9 @@
 import { put, call } from "redux-saga/effects";
 
-import { SAVE_PRODUCT_SUCCESS, SAVE_PRODUCT_FAILED } from "../actions/product";
+import { CREATE_PRODUCT_SUCCESS, CREATE_PRODUCT_FAILED } from "../actions/product";
 
 const Api = {
-	*saveProduct(
+	*createProduct(
 		name,
 		brand,
 		description,
@@ -13,7 +13,7 @@ const Api = {
 		price,
 		tags
 	) {
-		const res = yield fetch("/api/products/create", {
+		const res = yield fetch("/api/products", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
@@ -39,7 +39,7 @@ const Api = {
 	}
 };
 
-export function* saveProductFlow(action) {
+export function* createProductFlow(action) {
 	try {
 		const {
 			name,
@@ -52,7 +52,7 @@ export function* saveProductFlow(action) {
 			tags
 		} = action.payload;
 		yield call(
-			Api.saveProduct,
+			Api.createProduct,
 			name,
 			brand,
 			description,
@@ -62,8 +62,8 @@ export function* saveProductFlow(action) {
 			price,
 			tags
 		);
-		yield put({ type: SAVE_PRODUCT_SUCCESS });
+		yield put({ type: CREATE_PRODUCT_SUCCESS });
 	} catch (e) {
-		yield put({ type: SAVE_PRODUCT_FAILED, payload: e });
+		yield put({ type: CREATE_PRODUCT_FAILED, payload: e });
 	}
 }

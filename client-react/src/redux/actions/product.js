@@ -1,6 +1,6 @@
-export const SAVE_PRODUCT = "[PRODUCT] SAVE_PRODUCT";
+export const CREATE_PRODUCT_REQUEST = "[PRODUCT] CREATE_PRODUCT_REQUEST";
 
-export const saveProduct = (
+export const createProduct = (
 	name,
 	brand,
 	description,
@@ -10,7 +10,7 @@ export const saveProduct = (
 	price,
 	tags
 ) => ({
-	type: SAVE_PRODUCT,
+	type: CREATE_PRODUCT_REQUEST,
 	payload: {
 		name,
 		brand,
@@ -21,7 +21,7 @@ export const saveProduct = (
 		price,
 		tags
 	}
-	});
+});
 
-export const SAVE_PRODUCT_SUCCESS = "[PRODUCT] SAVE_PRODUCT_SUCCESS";
-export const SAVE_PRODUCT_FAILED = "[PRODUCT] SAVE_PRODUCT_FAILED";
+export const CREATE_PRODUCT_SUCCESS = "[PRODUCT] CREATE_PRODUCT_SUCCESS";
+export const CREATE_PRODUCT_FAILED = "[PRODUCT] CREATE_PRODUCT_FAILED";

@@ -1,12 +1,11 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {FormGroup, Input, Label} from "reactstrap";
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { FormGroup, Input, Label } from "reactstrap";
 import HomepageLayout from "../Layouts/HomepageLayout";
 
-import {saveProduct} from "../../redux/actions/product";
+import { createProduct } from "../../redux/actions/product";
 
 class SingleItemPage extends Component {
-
 	state = {
 		name: "",
 		brand: "",
@@ -20,6 +19,7 @@ class SingleItemPage extends Component {
 	};
 
 	handleChange = e => {
+		debugger;
 		this.setState({
 			[e.target.name]: e.target.value
 		});
@@ -39,7 +39,7 @@ class SingleItemPage extends Component {
 			tags
 		} = this.state;
 
-		this.props.saveProduct(
+		this.props.createProduct(
 			name,
 			brand,
 			description,
@@ -171,7 +171,7 @@ class SingleItemPage extends Component {
 const mapStateToProps = state => ({});
 
 const mapDispatchToProps = dispatch => ({
-	saveProduct: (
+	createProduct: (
 		name,
 		brand,
 		description,
@@ -182,7 +182,7 @@ const mapDispatchToProps = dispatch => ({
 		tags
 	) => {
 		dispatch(
-			saveProduct(
+			createProduct(
 				name,
 				brand,
 				description,
