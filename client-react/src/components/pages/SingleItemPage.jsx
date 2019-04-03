@@ -26,7 +26,8 @@ class SingleItemPage extends Component {
 
 	handleMultiSelectChange = e => {
 
-		const selectedValues = e.target.options.filter(option => option.selected).map(option => option.value)
+
+		const selectedValues = Array.from(e.target.options).filter(option => option.selected).map(option => option.value)
 
 		this.setState({
 			[e.target.name]: selectedValues
