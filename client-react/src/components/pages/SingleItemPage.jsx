@@ -19,9 +19,17 @@ class SingleItemPage extends Component {
 	};
 
 	handleChange = e => {
-		debugger;
 		this.setState({
 			[e.target.name]: e.target.value
+		});
+	};
+
+	handleMultiSelectChange = e => {
+
+		const selectedValues = e.target.options.filter(option => option.selected).map(option => option.value)
+
+		this.setState({
+			[e.target.name]: selectedValues
 		});
 	};
 
@@ -150,7 +158,7 @@ class SingleItemPage extends Component {
 							type="select"
 							name="categories"
 							multiple
-							onChange={this.handleChange}
+							onChange={this.handleMultiSelectChange}
 						>
 							<option>1</option>
 							<option>2</option>
