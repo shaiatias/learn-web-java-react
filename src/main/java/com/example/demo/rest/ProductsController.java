@@ -15,35 +15,28 @@ import java.util.Objects;
 @RestController
 public class ProductsController {
 
-	@Autowired
-	ProductsRepository productsRepository;
+    @Autowired
+    ProductsRepository productsRepository;
 
-	@PostMapping
-	public Mono<ResponseEntity<Product>> create(@RequestBody Product product) {
+    @PostMapping
+    public Mono<ResponseEntity<Product>> create(@RequestBody Product product) {
+        product.setId(null);
+        return productsRepository.save(product).map(savedPro -> ResponseEntity.ok(savedPro));
+    }
 
-		product.setId(null);
+    @PutMapping
+    public Mono<ResponseEntity<Product>> update(@RequestBody Product product) {
+        return productsRepository.save(product).map(savedPro -> ResponseEntity.ok(savedPro));
+    }
 
-		return productsRepository.save(product).map(savedPro -> ResponseEntity.ok(savedPro));
+    @GetMapping
+    public Flux<Product> getAll() {
+        return productsRepository.findAll();
+    }
 
-	}
-
-	@PostMapping
-	public Mono<ResponseEntity<Product>> update (@RequestBody Product product) {
-
-		return productsRepository.save(product).map(savedPro -> ResponseEntity.ok(savedPro));
-
-	}
-
-	@GetMapping
-	public Flux<Product> getAll() {
-
-		return productsRepository.findAll();
-	}
-
-	@GetMapping
-	public Mono<Product> getById(@RequestBody String productId) {
-
-		return productsRepository.findById(productId);
-	}
+    @GetMapping("/{id}")
+    public Mono<Product> getById(@RequestParam String id) {
+        return productsRepository.findById(id);
+    }
 
 }
