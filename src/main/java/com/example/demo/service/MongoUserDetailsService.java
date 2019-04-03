@@ -16,40 +16,18 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.example.demo.domain.Roles.ROLE_ADMIN;
-import static com.example.demo.domain.Roles.ROLE_USER;
+import static com.example.demo.domain.Roles.*;
 
 @Component
 public class MongoUserDetailsService implements UserDetailsService {
 
     @Autowired
-    private UsersRepository repository;
-
-    @Autowired
-    protected PasswordEncoder passwordEncoder;
-
-    @PostConstruct
-    public void addAdminUser() {
-
-        com.example.demo.domain.User admin = repository.findByEmail("admin");
-
-        if (admin != null) {
-            return;
-        }
-
-        admin = new com.example.demo.domain.User();
-
-        admin.setEmail("admin");
-        admin.setPassword(passwordEncoder.encode("admin"));
-        admin.setRoles(Arrays.asList(ROLE_ADMIN, ROLE_USER));
-
-        repository.save(admin);
-    }
+    private UsersRepository usersRepository;
 
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
-        com.example.demo.domain.User user = repository.findByEmail(email);
+        com.example.demo.domain.User user = usersRepository.findByEmail(email);
 
         if(user == null) {
             throw new UsernameNotFoundException("user not found");
