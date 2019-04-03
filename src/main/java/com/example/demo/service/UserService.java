@@ -8,9 +8,11 @@ import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpServletRequest;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.List;
 
-import static com.example.demo.domain.Roles.ROLE_USER;
+import static com.example.demo.domain.Roles.*;
 
 @Service
 public class UserService {
@@ -28,9 +30,33 @@ public class UserService {
     }
 
     public User createUser(UserRegisterRequest registerRequest) {
-        User user = new User(registerRequest.getName(), registerRequest.getEmail(), registerRequest.getPassword(), Collections.singletonList(ROLE_USER));
+        List<String> roles = new ArrayList<>();
+        roles.add(ROLE_USER);
+        User user = new User(registerRequest.getName(), registerRequest.getEmail(), registerRequest.getPassword(), roles);
+
         return usersRepository.save(user);
     }
+
+    public User createSeller(UserRegisterRequest registerRequest) {
+        List<String> roles = new ArrayList<>();
+        roles.add(ROLE_USER);
+        roles.add(ROLE_SELLER);
+        User user = new User(registerRequest.getName(), registerRequest.getEmail(), registerRequest.getPassword(), roles);
+
+        return usersRepository.save(user);
+    }
+
+    public User createAdmin(UserRegisterRequest registerRequest) {
+        List<String> roles = new ArrayList<>();
+        roles.add(ROLE_USER);
+        roles.add(ROLE_SELLER);
+        roles.add(ROLE_ADMIN);
+        User user = new User(registerRequest.getName(), registerRequest.getEmail(), registerRequest.getPassword(), roles);
+
+        return usersRepository.save(user);
+    }
+
+
 
     public User getUserByEmail(String email) {
         return usersRepository.findByEmail(email);

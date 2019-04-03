@@ -13,7 +13,7 @@ const Api = {
 		price,
 		tags
 	) {
-		const res = yield fetch("/api/products", {
+		const res = yield fetch("/api/products/create", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
