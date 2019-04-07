@@ -3,13 +3,11 @@ package com.example.demo.rest;
 import com.example.demo.domain.Product;
 import com.example.demo.repository.ProductsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-import reactor.core.publisher.Mono;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.Optional;
 
 @RequestMapping("/api/products")
 @RestController
@@ -19,24 +17,34 @@ public class ProductsController {
     ProductsRepository productsRepository;
 
     @PostMapping
-    public Mono<ResponseEntity<Product>> create(@RequestBody Product product) {
+    public ResponseEntity<Product> create(@RequestBody Product product) {
         product.setId(null);
-        return productsRepository.save(product).map(savedPro -> ResponseEntity.ok(savedPro));
+        Product savedPro = productsRepository.save(product);
+        return ResponseEntity.ok(savedPro);
     }
 
     @PutMapping
-    public Mono<ResponseEntity<Product>> update(@RequestBody Product product) {
-        return productsRepository.save(product).map(savedPro -> ResponseEntity.ok(savedPro));
+    public ResponseEntity<Product> update(@RequestBody Product product) {
+        Product savedPro = productsRepository.save(product);
+        return ResponseEntity.ok(savedPro);
     }
 
     @GetMapping
-    public Flux<Product> getAll() {
+    public List<Product> getAll() {
         return productsRepository.findAll();
     }
 
     @GetMapping("/{id}")
-    public Mono<Product> getById(@RequestParam String id) {
+    public Optional<Product> getById(@PathVariable String id) {
         return productsRepository.findById(id);
+
+//        Optional<Product> byId = productsRepository.findById(id);
+//
+//        if (byId.isPresent()) {
+//            return ResponseEntity.ok(byId.get());
+//        } else {
+//            return ResponseEntity.notFound().build();
+//        }
     }
 
 }

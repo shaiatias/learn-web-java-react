@@ -1,8 +1,9 @@
-import React, {Component, Fragment} from "react";
-import {connect} from "react-redux";
+import React, { Component, Fragment } from "react";
+import { connect } from "react-redux";
 import * as PropTypes from "prop-types";
 import {
-	Collapse, Container,
+	Collapse,
+	Container,
 	DropdownItem,
 	DropdownMenu,
 	DropdownToggle,
@@ -15,11 +16,11 @@ import {
 	UncontrolledDropdown
 } from "reactstrap";
 
-import {requestLogout} from "../redux/actions/authentication";
-import {getCartItemCount} from "../redux/reducers/CartReducer";
+import { requestLogout } from "../redux/actions/authentication";
+import { getCartItemCount } from "../redux/reducers/CartReducer";
+import { loadCart } from "../redux/actions/cart";
 
 class Header extends Component {
-
 	static propTypes = {
 		loggedIn: PropTypes.any,
 		requestLogout: PropTypes.any,
@@ -30,18 +31,22 @@ class Header extends Component {
 		isOpen: false
 	};
 
+	componentDidMount() {
+		this.props.loadCart();
+	}
+
 	toggle = () => {
-		this.setState({isOpen: !this.state.isOpen});
+		this.setState({ isOpen: !this.state.isOpen });
 	};
 
 	render() {
-		const {loggedIn, requestLogout, cartCount} = this.props;
+		const { loggedIn, requestLogout, cartCount } = this.props;
 		return (
 			<div className="bg-light">
 				<Container>
 					<Navbar color="light" light expand="sm" className={"px-0"}>
 						<NavbarBrand href="/">The Old Asos</NavbarBrand>
-						<NavbarToggler onClick={this.toggle}/>
+						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<Nav className="ml-auto" navbar>
 								<NavItem>
@@ -51,7 +56,9 @@ class Header extends Component {
 									<NavLink href="/sale">Sale</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="/category/woman">Women</NavLink>
+									<NavLink href="/category/woman">
+										Women
+									</NavLink>
 								</NavItem>
 								<NavItem>
 									<NavLink href="/category/man">Men</NavLink>
@@ -68,21 +75,23 @@ class Header extends Component {
 									<DropdownMenu right>
 										{!loggedIn && (
 											<Fragment>
-												<NavLink to={"/login"}>Login</NavLink>
-												<NavLink to={"/signup"}>Signup</NavLink>
+												<NavLink to={"/login"}>
+													Login
+												</NavLink>
+												<NavLink to={"/signup"}>
+													Signup
+												</NavLink>
 											</Fragment>
 										)}
-										<DropdownItem>
-											Option 1
-										</DropdownItem>
-										{loggedIn &&
-										<Fragment>
-											<DropdownItem divider/>
-											<DropdownItem>
-												logout
-											</DropdownItem>
-										</Fragment>
-										}
+										<DropdownItem>Option 1</DropdownItem>
+										{loggedIn && (
+											<Fragment>
+												<DropdownItem divider />
+												<DropdownItem>
+													logout
+												</DropdownItem>
+											</Fragment>
+										)}
 									</DropdownMenu>
 								</UncontrolledDropdown>
 							</Nav>
@@ -100,7 +109,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	requestLogout: () => dispatch(requestLogout())
+	requestLogout: () => dispatch(requestLogout()),
+	loadCart: () => dispatch(loadCart())
 });
 
 export default connect(

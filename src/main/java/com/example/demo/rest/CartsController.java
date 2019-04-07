@@ -45,7 +45,8 @@ public class CartsController {
 		String userId = userService.getUserIdFromRequest(request);
 
 		Cart cart = cartService.getCart(userId).block();
-		cart.getProducts().put(productInCart.getProduct().getId(), productInCart);
+
+		cart.getProducts().put(productInCart.getProductId(), productInCart);
 
 		return cartsRepository.save(cart);
 	}

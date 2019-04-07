@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
-import java.util.Collections;
+import java.util.HashMap;
 
 @Service
 public class CartService {
@@ -17,6 +17,6 @@ public class CartService {
     public Mono<Cart> getCart(String userId) {
         return cartsRepository
                 .findByUserId(userId)
-                .switchIfEmpty(Mono.defer(() -> cartsRepository.save(new Cart(userId, Collections.emptyMap()))));
+                .switchIfEmpty(Mono.defer(() -> cartsRepository.save(new Cart(userId, new HashMap<>()))));
     }
 }

@@ -1,26 +1,35 @@
-export const ADD_PRODUCT = "[CART] ADD_PRODUCT";
+export const LOAD_CART_REQUEST = "[CART] LOAD_CART_REQUEST";
+export const LOAD_CART_FAILED = "[CART] LOAD_CART_FAILED";
 
-export const addItemToCart = item => ({
-	type: ADD_PRODUCT,
-	payload: item
+export const loadCart = () => ({
+	type: LOAD_CART_REQUEST
 });
 
-export const REMOVE_PRODUCT = "[CART] REMOVE_PRODUCT";
+export const UPDATE_QUANTITY_REQUEST = "[CART] UPDATE_QUANTITY_REQUEST";
+export const UPDATE_QUANTITY_SUCCESS = "[CART] UPDATE_QUANTITY_SUCCESS";
+export const UPDATE_QUANTITY_FAILED = "[CART] UPDATE_QUANTITY_FAILED";
 
-export const removeItemToCart = itemId => ({
-	type: REMOVE_PRODUCT,
-	payload: { id: itemId }
+export const updateItemQuantity = (productId, quantity) => ({
+	type: UPDATE_QUANTITY_REQUEST,
+	payload: { productId, quantity }
 });
 
-export const UPDATE_QUANTITY = "[CART] UPDATE_QUANTITY";
-
-export const updateItemQuantity = (id, quantity) => ({
-	type: UPDATE_QUANTITY,
-	payload: { id, quantity }
+export const addItemToCart = (productId, size) => ({
+	type: UPDATE_QUANTITY_REQUEST,
+	payload: { productId, quantity: 1, size }
 });
 
-export const CLEAR_CART = "[CART] CLEAR_CART";
+export const removeItemToCart = (productId, size) => ({
+	type: UPDATE_QUANTITY_REQUEST,
+	payload: { productId, size, quantity: 0 }
+});
+
+export const CLEAR_CART_REQUEST = "[CART] CLEAR_CART_REQUEST";
+export const CLEAR_CART_SUCCESS = "[CART] CLEAR_CART_SUCCESS";
+export const CLEAR_CART_FAILED = "[CART] CLEAR_CART_FAILED";
 
 export const clearCart = () => ({
-	type: CLEAR_CART,
+	type: CLEAR_CART_REQUEST
 });
+
+export const UPDATE_CART = "[CART] UPDATE_CART";

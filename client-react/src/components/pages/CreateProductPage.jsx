@@ -5,7 +5,7 @@ import HomepageLayout from "../Layouts/HomepageLayout";
 
 import { createProduct } from "../../redux/actions/product";
 
-class SingleItemPage extends Component {
+class CreateProductPage extends Component {
 	state = {
 		name: "",
 		brand: "",
@@ -25,9 +25,9 @@ class SingleItemPage extends Component {
 	};
 
 	handleMultiSelectChange = e => {
-
-
-		const selectedValues = Array.from(e.target.options).filter(option => option.selected).map(option => option.value)
+		const selectedValues = Array.from(e.target.options)
+			.filter(option => option.selected)
+			.map(option => option.value);
 
 		this.setState({
 			[e.target.name]: selectedValues
@@ -161,11 +161,28 @@ class SingleItemPage extends Component {
 							multiple
 							onChange={this.handleMultiSelectChange}
 						>
-							<option>1</option>
+							<option>MEN</option>
 							<option>2</option>
 							<option>3</option>
 							<option>4</option>
 							<option>5</option>
+						</Input>
+					</FormGroup>
+					<FormGroup>
+						<Label for="availableSizes">
+							Select avalaible sizes
+						</Label>
+						<Input
+							type="select"
+							name="availableSizes"
+							multiple
+							onChange={this.handleMultiSelectChange}
+						>
+							<option>XS</option>
+							<option>S</option>
+							<option>M</option>
+							<option>L</option>
+							<option>XL</option>
 						</Input>
 					</FormGroup>
 					<div className="form-group">
@@ -208,4 +225,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(SingleItemPage);
+)(CreateProductPage);

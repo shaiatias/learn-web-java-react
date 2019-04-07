@@ -25,3 +25,15 @@ export const createProduct = (
 
 export const CREATE_PRODUCT_SUCCESS = "[PRODUCT] CREATE_PRODUCT_SUCCESS";
 export const CREATE_PRODUCT_FAILED = "[PRODUCT] CREATE_PRODUCT_FAILED";
+
+//
+
+export const LOAD_PRODUCT_REQUEST = "[PRODUCT] LOAD_PRODUCT_REQUEST";
+
+export const loadProduct = productId => ({
+	type: LOAD_PRODUCT_REQUEST,
+	payload: { productId }
+});
+
+export const LOAD_PRODUCT_SUCCESS = "[PRODUCT] LOAD_PRODUCT_SUCCESS";
+export const LOAD_PRODUCT_FAILED = "[PRODUCT] LOAD_PRODUCT_FAILED";

@@ -26,18 +26,6 @@ public class UserService {
     @Autowired
     PasswordEncoder passwordEncoder;
 
-    @PostConstruct
-    public void addAdminUser() {
-
-        User admin = usersRepository.findByEmail("admin");
-
-        if (admin != null) {
-            return;
-        }
-
-        createAdmin(new UserRegisterRequest("admin", "admin", "admin", "admin"));
-    }
-
     public String getUserIdFromRequest(HttpServletRequest request) {
         Principal userPrincipal = request.getUserPrincipal();
         String sessionId = request.getSession().getId();

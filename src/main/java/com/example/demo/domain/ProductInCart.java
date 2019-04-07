@@ -2,7 +2,7 @@ package com.example.demo.domain;
 
 public class ProductInCart {
 
-    private Product product;
+    private String productId;
 
     private int quantity;
 
@@ -11,18 +11,18 @@ public class ProductInCart {
     public ProductInCart() {
     }
 
-    public ProductInCart(Product product, int quantity, String size) {
-        this.product = product;
+    public ProductInCart(String productId, int quantity, String size) {
+        this.productId = productId;
         this.quantity = quantity;
         this.size = size;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {
@@ -44,7 +44,7 @@ public class ProductInCart {
     @Override
     public String toString() {
         return "ProductInCart{" +
-                "product=" + product +
+                "productId=" + productId +
                 ", quantity=" + quantity +
                 ", size='" + size + '\'' +
                 '}';

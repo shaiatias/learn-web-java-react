@@ -1,6 +1,11 @@
 import { put, call } from "redux-saga/effects";
 
-import { CREATE_PRODUCT_SUCCESS, CREATE_PRODUCT_FAILED } from "../actions/product";
+import {
+	CREATE_PRODUCT_SUCCESS,
+	CREATE_PRODUCT_FAILED,
+	LOAD_PRODUCT_SUCCESS,
+	LOAD_PRODUCT_FAILED
+} from "../actions/product";
 
 const Api = {
 	*createProduct(
@@ -36,8 +41,33 @@ const Api = {
 			const err = yield res.text();
 			throw Error(err);
 		}
+	},
+	*getProductById(id) {
+		const res = yield fetch(`/api/products/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
 	}
 };
+
+export function* getProductByIdFlow(action) {
+	try {
+		const { productId } = action.payload;
+		const product = yield call(Api.getProductById, productId);
+		yield put({ type: LOAD_PRODUCT_SUCCESS, payload: product });
+	} catch (e) {
+		yield put({ type: LOAD_PRODUCT_FAILED, payload: e });
+	}
+}
 
 export function* createProductFlow(action) {
 	try {

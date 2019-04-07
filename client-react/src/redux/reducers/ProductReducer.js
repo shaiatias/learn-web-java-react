@@ -1,14 +1,20 @@
-import { CREATE_PRODUCT_SUCCESS } from "../actions/product";
+import {
+	CREATE_PRODUCT_SUCCESS,
+	LOAD_PRODUCT_SUCCESS
+} from "../actions/product";
 
 const initialState = {
-	name: "",
-	brand: "",
-	description: "",
-	imageUrl: "",
-	availableSizes: [],
-	categories: [],
-	price: "",
-	tags: []
+	products: {},
+	productForm: {
+		name: "",
+		brand: "",
+		description: "",
+		imageUrl: "",
+		availableSizes: [],
+		categories: [],
+		price: "",
+		tags: []
+	}
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +24,20 @@ export default (state = initialState, action) => {
 				...state
 			};
 
+		case LOAD_PRODUCT_SUCCESS:
+			return {
+				...state,
+				products: {
+					...state.products,
+					[action.payload.id]: action.payload
+				}
+			};
+
 		default:
 			return state;
 	}
+};
+
+export const getProductById = (state, productId) => {
+	return state.products[productId];
 };
