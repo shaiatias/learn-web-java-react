@@ -30,26 +30,22 @@ public class ProductsController {
     }
 
     @GetMapping
-    public List<Product> getAll() {
-        return productsRepository.findAll();
+    public List<Product> getAll(
+            @RequestParam(required = false) List<String> tags,
+            @RequestParam(required = false) List<String> categories) {
+
+        if (tags != null)
+            return productsRepository.findInTags(tags);
+
+        else if (categories!= null)
+            return productsRepository.findInCategories(categories);
+
+        else
+            return productsRepository.findAll();
     }
 
     @GetMapping("/{id}")
     public Optional<Product> getById(@PathVariable String id) {
         return productsRepository.findById(id);
-
-//        Optional<Product> byId = productsRepository.findById(id);
-//
-//        if (byId.isPresent()) {
-//            return ResponseEntity.ok(byId.get());
-//        } else {
-//            return ResponseEntity.notFound().build();
-//        }
     }
-
-    @GetMapping("/new")
-    public List<Product> getNewProducts(){
-        return  productsRepository.findAll();
-    }
-
 }

@@ -89,7 +89,7 @@ public class FillDb {
                         Arrays.asList("S", "L", "XL"),
                         Arrays.asList("dress", "women"),
                         61.95,
-                        Arrays.asList("new")
+                        Arrays.asList("new", "sale")
                 ));
 
         List<Product> products1 = productsRepository.saveAll(products);
