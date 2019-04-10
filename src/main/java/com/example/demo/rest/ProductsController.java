@@ -47,4 +47,9 @@ public class ProductsController {
 //        }
     }
 
+    @GetMapping("/new")
+    public List<Product> getNewProducts(){
+        return  productsRepository.findAll();
+    }
+
 }

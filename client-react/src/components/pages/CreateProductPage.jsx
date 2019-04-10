@@ -162,10 +162,7 @@ class CreateProductPage extends Component {
 							onChange={this.handleMultiSelectChange}
 						>
 							<option>MEN</option>
-							<option>2</option>
-							<option>3</option>
-							<option>4</option>
-							<option>5</option>
+							<option>WOMEN</option>
 						</Input>
 					</FormGroup>
 					<FormGroup>
@@ -183,6 +180,18 @@ class CreateProductPage extends Component {
 							<option>M</option>
 							<option>L</option>
 							<option>XL</option>
+						</Input>
+					</FormGroup>
+					<FormGroup>
+						<Label for="tags">Select tags</Label>
+						<Input
+							type="select"
+							name="tags"
+							multiple
+							onChange={this.handleMultiSelectChange}
+						>
+							<option>NEW</option>
+							<option>SALE</option>
 						</Input>
 					</FormGroup>
 					<div className="form-group">
