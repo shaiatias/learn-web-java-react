@@ -10,11 +10,11 @@ import java.util.List;
 @Repository
 public interface ProductsRepository extends MongoRepository<Product, String> {
 
-    @Query("{ 'tags' : { $in : ?0 } }")
-    List<Product> findInTags(List<String> tags);
-
-    @Query("{ 'tags' : { $all : ?0 } }")
-    List<Product> findByAllTags(List<String> tags);
+//    @Query("{ 'tags' : { $in : ?0 } }")
+//    List<Product> findInTags(List<String> tags);
+//
+//    @Query("{ 'tags' : { $all : ?0 } }")
+//    List<Product> findByAllTags(List<String> tags);
 
     @Query("{ 'categories' : { $in : ?0 } }")
     List<Product> findInCategories(List<String> categories);

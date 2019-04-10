@@ -31,13 +31,9 @@ public class ProductsController {
 
     @GetMapping
     public List<Product> getAll(
-            @RequestParam(required = false) List<String> tags,
             @RequestParam(required = false) List<String> categories) {
 
-        if (tags != null)
-            return productsRepository.findInTags(tags);
-
-        else if (categories!= null)
+        if (categories!= null)
             return productsRepository.findInCategories(categories);
 
         else

@@ -1,6 +1,7 @@
 import {
 	CREATE_PRODUCT_SUCCESS,
-	LOAD_PRODUCT_SUCCESS
+	LOAD_PRODUCT_SUCCESS,
+	LOAD_FILTERED_PRODUCTS_SUCCESS
 } from "../actions/product";
 
 const initialState = {
@@ -24,6 +25,20 @@ export default (state = initialState, action) => {
 				...state
 			};
 
+		case LOAD_FILTERED_PRODUCTS_SUCCESS:
+			const products = action.payload.reduce((acc, item) => {
+				acc[item.id] = item;
+				return acc;
+			}, {});
+
+			return {
+				...state,
+				products: {
+					...state.products,
+					...products
+				}
+			};
+
 		case LOAD_PRODUCT_SUCCESS:
 			return {
 				...state,
@@ -40,4 +55,10 @@ export default (state = initialState, action) => {
 
 export const getProductById = (state, productId) => {
 	return state.products[productId];
+};
+
+export const getProductByCategory = (state, category) => {
+	return Object.values(state.products).filter(item =>
+		new Set(item.categories).has(category)
+	);
 };

@@ -76,9 +76,9 @@ public class FillDb {
                         "Boohoo exclusive basic long sleeve midi dress in khaki",
                         "https://images.asos-media.com/products/boohoo-exclusive-basic-long-sleeve-midi-dress-in-khaki/10873944-1-khaki?$XXL$&wid=513&fit=constrain",
                         Arrays.asList("S", "L"),
-                        Arrays.asList("dress", "women"),
+                        Arrays.asList("dress", "women", "sale"),
                         31.95,
-                        Arrays.asList("sale")
+                        Arrays.asList("sale")   
                 ),
                 new Product(
                         null,
@@ -87,9 +87,9 @@ public class FillDb {
                         "Missguided exclusive ribbed short sleeve v neck midi dress in beige",
                         "https://images.asos-media.com/products/missguided-exclusive-ribbed-short-sleeve-v-neck-midi-dress-in-beige/10890758-1-camel?$XXL$&wid=513&fit=constrain",
                         Arrays.asList("S", "L", "XL"),
-                        Arrays.asList("dress", "women"),
+                        Arrays.asList("new", "sale", "dress", "women"),
                         61.95,
-                        Arrays.asList("new", "sale")
+                        Arrays.asList("new", "sale", "dress", "women")
                 ));
 
         List<Product> products1 = productsRepository.saveAll(products);

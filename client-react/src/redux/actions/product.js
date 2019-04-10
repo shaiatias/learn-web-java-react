@@ -37,3 +37,18 @@ export const loadProduct = productId => ({
 
 export const LOAD_PRODUCT_SUCCESS = "[PRODUCT] LOAD_PRODUCT_SUCCESS";
 export const LOAD_PRODUCT_FAILED = "[PRODUCT] LOAD_PRODUCT_FAILED";
+
+//
+
+export const LOAD_FILTERED_PRODUCTS_REQUEST =
+	"[PRODUCT] LOAD_FILTERED_PRODUCTS_REQUEST";
+
+export const loadProductByCategories = categories => ({
+	type: LOAD_FILTERED_PRODUCTS_REQUEST,
+	payload: { categories }
+});
+
+export const LOAD_FILTERED_PRODUCTS_SUCCESS =
+	"[PRODUCT] LOAD_FILTERED_PRODUCTS_SUCCESS";
+export const LOAD_FILTERED_PRODUCTS_FAILED =
+	"[PRODUCT] LOAD_FILTERED_PRODUCTS_FAILED";

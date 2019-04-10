@@ -4,7 +4,9 @@ import {
 	CREATE_PRODUCT_SUCCESS,
 	CREATE_PRODUCT_FAILED,
 	LOAD_PRODUCT_SUCCESS,
-	LOAD_PRODUCT_FAILED
+	LOAD_PRODUCT_FAILED,
+	LOAD_FILTERED_PRODUCTS_SUCCESS,
+	LOAD_FILTERED_PRODUCTS_FAILED
 } from "../actions/product";
 
 const Api = {
@@ -56,6 +58,25 @@ const Api = {
 			const err = yield res.text();
 			throw Error(err);
 		}
+	},
+	*getProductByCategories(categories) {
+		const url = `/api/products?categories=${encodeURIComponent(
+			categories
+		)}`;
+
+		const res = yield fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
 	}
 };
 
@@ -66,6 +87,22 @@ export function* getProductByIdFlow(action) {
 		yield put({ type: LOAD_PRODUCT_SUCCESS, payload: product });
 	} catch (e) {
 		yield put({ type: LOAD_PRODUCT_FAILED, payload: e });
+	}
+}
+
+export function* getProductByCategoriesFlow(action) {
+	try {
+		const { categories } = action.payload;
+		const products = yield call(Api.getProductByCategories, categories);
+		yield put({
+			type: LOAD_FILTERED_PRODUCTS_SUCCESS,
+			payload: products
+		});
+	} catch (e) {
+		yield put({
+			type: LOAD_FILTERED_PRODUCTS_FAILED,
+			payload: e
+		});
 	}
 }
 
