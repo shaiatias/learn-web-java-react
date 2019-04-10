@@ -44,7 +44,7 @@ class ProductFilterPage extends Component {
 		);
 
 		return (
-			<HomepageLayout className={"py-4"}>
+			<HomepageLayout>
 				<h1 className="text-capitalize">{category}</h1>
 				{ProductEl}
 			</HomepageLayout>

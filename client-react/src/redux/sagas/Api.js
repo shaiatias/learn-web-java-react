@@ -1,0 +1,165 @@
+import { put, call } from "redux-saga/effects";
+import {
+	LOGOUT_SUCCESS,
+	LOGIN_FAILED,
+	LOGIN_SUCCESS,
+	REGISTER_SUCCESS,
+	REGISTER_FAILED
+} from "../actions/authentication";
+import { RESET_ALL } from "../actions/users";
+
+export const Api = {
+	*login(email, password) {
+		const creds = btoa(`${email}:${password}`);
+
+		const res = yield fetch("/auth/login", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Basic ${creds}`
+			}
+		});
+
+		if (res.ok) {
+			return;
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+
+	*register(name, email, password, passwordConfirm) {
+		const res = yield fetch("/auth/register", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				name,
+				email,
+				password,
+				passwordConfirm
+			})
+		});
+
+		if (res.ok) {
+			return;
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+
+	*updateCart(productId, quantity, size) {
+		const res = yield fetch("/api/carts", {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				productId,
+				quantity,
+				size
+			})
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	*clearCart() {
+		const res = yield fetch(`/api/carts`, {
+			method: "DELETE"
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	*loadCart() {
+		const res = yield fetch(`/api/carts`, {
+			method: "GET"
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	*createProduct(
+		name,
+		brand,
+		description,
+		imageUrl,
+		availableSizes,
+		categories,
+		price,
+		tags
+	) {
+		const res = yield fetch("/api/products", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				name,
+				brand,
+				description,
+				imageUrl,
+				availableSizes,
+				categories,
+				price,
+				tags
+			})
+		});
+
+		if (res.ok) {
+			return;
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	*getProductById(id) {
+		const res = yield fetch(`/api/products/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	*getProductByCategories(categories) {
+		const url = `/api/products?categories=${encodeURIComponent(
+			categories
+		)}`;
+
+		const res = yield fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	}
+};

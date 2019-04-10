@@ -9,76 +9,7 @@ import {
 	LOAD_FILTERED_PRODUCTS_FAILED
 } from "../actions/product";
 
-const Api = {
-	*createProduct(
-		name,
-		brand,
-		description,
-		imageUrl,
-		availableSizes,
-		categories,
-		price,
-		tags
-	) {
-		const res = yield fetch("/api/products", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify({
-				name,
-				brand,
-				description,
-				imageUrl,
-				availableSizes,
-				categories,
-				price,
-				tags
-			})
-		});
-
-		if (res.ok) {
-			return;
-		} else {
-			const err = yield res.text();
-			throw Error(err);
-		}
-	},
-	*getProductById(id) {
-		const res = yield fetch(`/api/products/${id}`, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
-
-		if (res.ok) {
-			return yield res.json();
-		} else {
-			const err = yield res.text();
-			throw Error(err);
-		}
-	},
-	*getProductByCategories(categories) {
-		const url = `/api/products?categories=${encodeURIComponent(
-			categories
-		)}`;
-
-		const res = yield fetch(url, {
-			method: "GET",
-			headers: {
-				"Content-Type": "application/json"
-			}
-		});
-
-		if (res.ok) {
-			return yield res.json();
-		} else {
-			const err = yield res.text();
-			throw Error(err);
-		}
-	}
-};
+import { Api } from "./Api";
 
 export function* getProductByIdFlow(action) {
 	try {

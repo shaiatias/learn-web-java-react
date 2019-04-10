@@ -1,8 +1,12 @@
 export const LOAD_CART_REQUEST = "[CART] LOAD_CART_REQUEST";
 export const LOAD_CART_FAILED = "[CART] LOAD_CART_FAILED";
+export const LOAD_CART_SUCCESS = "[CART] LOAD_CART_SUCCESS";
 
-export const loadCart = () => ({
-	type: LOAD_CART_REQUEST
+export const loadCart = ({ includeProducts = false }) => ({
+	type: LOAD_CART_REQUEST,
+	meta: {
+		includeProducts
+	}
 });
 
 export const UPDATE_QUANTITY_REQUEST = "[CART] UPDATE_QUANTITY_REQUEST";

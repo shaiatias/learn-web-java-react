@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import * as PropTypes from "prop-types";
 import {
 	Collapse,
@@ -45,28 +46,46 @@ class Header extends Component {
 			<div className="bg-light">
 				<Container>
 					<Navbar color="light" light expand="sm" className={"px-0"}>
-						<NavbarBrand href="/">The Old Asos</NavbarBrand>
+						<NavbarBrand to="/" tag={RouterNavLink}>
+							The Old Asos
+						</NavbarBrand>
 						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
 							<Nav className="ml-auto" navbar>
 								<NavItem>
-									<NavLink href="/category/new">New</NavLink>
+									<NavLink
+										to="/category/new"
+										tag={RouterNavLink}
+									>
+										New
+									</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="/category/sale">
+									<NavLink
+										tag={RouterNavLink}
+										to="/category/sale"
+									>
 										Sale
 									</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="/category/woman">
+									<NavLink
+										to="/category/woman"
+										tag={RouterNavLink}
+									>
 										Women
 									</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="/category/man">Men</NavLink>
+									<NavLink
+										to="/category/man"
+										tag={RouterNavLink}
+									>
+										Men
+									</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink href="/cart">
+									<NavLink to="/cart" tag={RouterNavLink}>
 										Cart ({cartCount})
 									</NavLink>
 								</NavItem>
@@ -77,10 +96,16 @@ class Header extends Component {
 									<DropdownMenu right>
 										{!loggedIn && (
 											<Fragment>
-												<NavLink to={"/login"}>
+												<NavLink
+													to={"/login"}
+													tag={RouterNavLink}
+												>
 													Login
 												</NavLink>
-												<NavLink to={"/signup"}>
+												<NavLink
+													to={"/signup"}
+													tag={RouterNavLink}
+												>
 													Signup
 												</NavLink>
 											</Fragment>
@@ -112,7 +137,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
 	requestLogout: () => dispatch(requestLogout()),
-	loadCart: () => dispatch(loadCart())
+	loadCart: () => dispatch(loadCart({ includeProducts: false }))
 });
 
 export default connect(

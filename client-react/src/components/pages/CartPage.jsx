@@ -7,7 +7,8 @@ import HomepageLayout from "../Layouts/HomepageLayout";
 import {
 	addItemToCart,
 	clearCart,
-	updateItemQuantity
+	updateItemQuantity,
+	loadCart
 } from "../../redux/actions/cart";
 import CartItems from "../CartItems";
 import CartSummary from "../CartSummary";
@@ -18,6 +19,10 @@ import {
 import { loadProduct } from "../../redux/actions/product";
 
 class CartPage extends Component {
+	componentDidMount() {
+		this.props.loadCart();
+	}
+
 	render() {
 		const { items, clearCart, shipping, totalBeforeShipping } = this.props;
 
@@ -64,6 +69,7 @@ const mapDispatchToProps = dispatch => ({
 	updateItemQuantity: (id, quantity) =>
 		dispatch(updateItemQuantity(id, quantity)),
 	loadProduct: id => dispatch(loadProduct(id)),
+	loadCart: () => dispatch(loadCart({ includeProducts: true })),
 	clearCart: () => dispatch(clearCart())
 });
 
