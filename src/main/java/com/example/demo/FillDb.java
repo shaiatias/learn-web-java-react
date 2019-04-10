@@ -78,7 +78,7 @@ public class FillDb {
                         Arrays.asList("S", "L"),
                         Arrays.asList("dress", "women", "sale"),
                         31.95,
-                        Arrays.asList("sale")   
+                        Arrays.asList("sale")
                 ),
                 new Product(
                         null,
