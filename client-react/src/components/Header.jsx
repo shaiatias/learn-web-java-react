@@ -22,6 +22,7 @@ import { getCartItemCount } from "../redux/reducers/CartReducer";
 import { loadCart } from "../redux/actions/cart";
 
 class Header extends Component {
+
 	static propTypes = {
 		loggedIn: PropTypes.any,
 		requestLogout: PropTypes.any,
@@ -114,7 +115,7 @@ class Header extends Component {
 										{loggedIn && (
 											<Fragment>
 												<DropdownItem divider />
-												<DropdownItem>
+												<DropdownItem onClick={requestLogout}>
 													logout
 												</DropdownItem>
 											</Fragment>

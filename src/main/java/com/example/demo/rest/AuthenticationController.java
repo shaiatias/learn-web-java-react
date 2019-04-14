@@ -41,7 +41,7 @@ public class AuthenticationController {
 
     @PostMapping("/register")
     public ResponseEntity<User> register(HttpServletRequest request, HttpServletResponse response, @RequestBody UserRegisterRequest body) {
-        User user = userService.createUser(body);
+        User user = userService.createCustomer(body);
         return ResponseEntity.ok().body(user);
     }
 }

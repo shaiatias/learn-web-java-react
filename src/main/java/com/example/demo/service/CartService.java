@@ -14,9 +14,14 @@ public class CartService {
     @Autowired
     CartsRepository cartsRepository;
 
-    public Mono<Cart> getCart(String userId) {
-        return cartsRepository
-                .findByUserId(userId)
-                .switchIfEmpty(Mono.defer(() -> cartsRepository.save(new Cart(userId, new HashMap<>()))));
+    public Cart getCart(String userId) {
+
+        Cart cart = cartsRepository.findByUserId(userId);
+
+        if (cart == null) {
+            cart = cartsRepository.save(new Cart(userId, new HashMap<>()));
+        }
+
+        return cart;
     }
 }

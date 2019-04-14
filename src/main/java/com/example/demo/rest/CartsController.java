@@ -35,16 +35,16 @@ public class CartsController {
 	UserService userService;
 
 	@GetMapping
-	public Mono<Cart> get(HttpServletRequest request) {
+	public Cart get(HttpServletRequest request) {
 		return cartService.getCart(userService.getUserIdFromRequest(request));
 	}
 
 	@PutMapping
-	public Mono<Cart> updateCart(HttpServletRequest request, @RequestBody ProductInCart productInCart) {
+	public Cart updateCart(HttpServletRequest request, @RequestBody ProductInCart productInCart) {
 
 		String userId = userService.getUserIdFromRequest(request);
 
-		Cart cart = cartService.getCart(userId).block();
+		Cart cart = cartService.getCart(userId);
 
 		cart.getProducts().put(productInCart.getProductId(), productInCart);
 
@@ -52,11 +52,11 @@ public class CartsController {
 	}
 
 	@DeleteMapping
-	public Mono<Cart> clearCart(HttpServletRequest request) {
+	public Cart clearCart(HttpServletRequest request) {
 
 		String userId = userService.getUserIdFromRequest(request);
 
-		Cart cart = cartService.getCart(userId).block();
+		Cart cart = cartService.getCart(userId);
 
 		cart.getProducts().clear();
 

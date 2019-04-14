@@ -1,30 +1,34 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 import ListGroupItem from "reactstrap/es/ListGroupItem";
-import { Button, Col, Row } from "reactstrap";
+import {Button, Col, Row} from "reactstrap";
 import ListGroup from "reactstrap/es/ListGroup";
-import { connect } from "react-redux";
+import {connect} from "react-redux";
 
 import "./CartItems.css";
-import { updateItemQuantity } from "../redux/actions/cart";
-import { loadProduct } from "../redux/actions/product";
-import { getProductById } from "../redux/reducers/ProductReducer";
+import {updateItemQuantity} from "../redux/actions/cart";
+import {loadProduct} from "../redux/actions/product";
+import {getProductById} from "../redux/reducers/ProductReducer";
 
 class CartItems extends Component {
-	componentDidMount() {
-		const { loadProduct, items } = this.props;
 
-		items.forEach(item => {
-			loadProduct(item.productId);
+	componentDidMount() {
+		const {loadProduct, items} = this.props;
+
+		Object.keys(items).forEach(productId => {
+			loadProduct(productId);
 		});
 	}
 
 	render() {
-		const { items, updateItemQuantity } = this.props;
-		const { products: productsReducerState } = this.props;
+		const {items, updateItemQuantity, products: productsReducerState} = this.props;
 
-		const products = items
-			.map(item => getProductById(productsReducerState, item.productId))
-			.filter(item => !!item);
+		const products = Object.keys(items)
+			.map(productId => getProductById(productsReducerState, productId))
+			.filter(item => !!item)
+			.map(product => ({
+				...items[product.id],
+				...product
+			}))
 
 		return (
 			<ListGroup className={"my-3"}>
@@ -33,16 +37,16 @@ class CartItems extends Component {
 						<Row>
 							<Col className={"text-center"}>
 								<img
-									src={item.img}
+									src={item.imageUrl}
 									height={100}
 									alt={item.name}
 								/>
 							</Col>
 							<Col md={6}>
-								<h4>{item.name}</h4>
-								<pre>{item.description}</pre>
+								<h4 className={"run-on-text"}>{item.name}</h4>
+								<p>{item.description}</p>
 								<pre>{item.size}</pre>
-								<pre>{item.totalPrice}$</pre>
+								<pre>{item.price}$</pre>
 							</Col>
 							<Col
 								className={
@@ -88,7 +92,7 @@ class CartItems extends Component {
 }
 
 const mapStateToProps = state => ({
-	products: state.products
+	products: state.products,
 });
 
 const mapDispatchToProps = {

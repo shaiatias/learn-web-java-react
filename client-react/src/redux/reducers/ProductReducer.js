@@ -1,8 +1,5 @@
-import {
-	CREATE_PRODUCT_SUCCESS,
-	LOAD_PRODUCT_SUCCESS,
-	LOAD_FILTERED_PRODUCTS_SUCCESS
-} from "../actions/product";
+import {RESET_ALL} from "../actions/reset";
+import {CREATE_PRODUCT_SUCCESS, LOAD_FILTERED_PRODUCTS_SUCCESS, LOAD_PRODUCT_SUCCESS} from "../actions/product";
 
 const initialState = {
 	products: {},
@@ -25,7 +22,7 @@ export default (state = initialState, action) => {
 				...state
 			};
 
-		case LOAD_FILTERED_PRODUCTS_SUCCESS:
+		case LOAD_FILTERED_PRODUCTS_SUCCESS: {
 			const products = action.payload.reduce((acc, item) => {
 				acc[item.id] = item;
 				return acc;
@@ -38,6 +35,7 @@ export default (state = initialState, action) => {
 					...products
 				}
 			};
+		}
 
 		case LOAD_PRODUCT_SUCCESS:
 			return {
@@ -47,6 +45,9 @@ export default (state = initialState, action) => {
 					[action.payload.id]: action.payload
 				}
 			};
+
+		case RESET_ALL:
+			return {...initialState};
 
 		default:
 			return state;

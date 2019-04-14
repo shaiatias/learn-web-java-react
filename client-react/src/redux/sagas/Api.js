@@ -1,12 +1,3 @@
-import { put, call } from "redux-saga/effects";
-import {
-	LOGOUT_SUCCESS,
-	LOGIN_FAILED,
-	LOGIN_SUCCESS,
-	REGISTER_SUCCESS,
-	REGISTER_FAILED
-} from "../actions/authentication";
-import { RESET_ALL } from "../actions/users";
 
 export const Api = {
 	*login(email, password) {
@@ -153,6 +144,26 @@ export const Api = {
 			headers: {
 				"Content-Type": "application/json"
 			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+
+	*confirmPayment(name, email, country, state, zip, cc, expYear, expMonth, cvv) {
+
+		const res = yield fetch("/api/checkout", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json"
+			},
+			body: JSON.stringify({
+				name, email, country, state, zip, cc, expYear, expMonth, cvv
+			})
 		});
 
 		if (res.ok) {

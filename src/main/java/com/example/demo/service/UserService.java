@@ -35,7 +35,7 @@ public class UserService {
                 userPrincipal.getName();
     }
 
-    public User createUser(UserRegisterRequest registerRequest) {
+    public User createCustomer(UserRegisterRequest registerRequest) {
         List<String> roles = new ArrayList<>();
         roles.add(ROLE_USER);
         User user = new User(registerRequest.getName(), registerRequest.getEmail(), passwordEncoder.encode(registerRequest.getPassword()), roles);

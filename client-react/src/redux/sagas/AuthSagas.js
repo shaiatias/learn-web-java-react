@@ -7,7 +7,7 @@ import {
 	REGISTER_FAILED
 } from "../actions/authentication";
 
-import { RESET_ALL } from "../actions/users";
+import { RESET_ALL } from "../actions/reset";
 
 import { Api } from "./Api";
 

@@ -30,14 +30,15 @@ public class ProductsController {
     }
 
     @GetMapping
-    public List<Product> getAll(
-            @RequestParam(required = false) List<String> categories) {
+    public List<Product> getAll(@RequestParam(required = false) List<String> categories) {
 
-        if (categories!= null)
+        if (categories != null) {
             return productsRepository.findInCategories(categories);
+        }
 
-        else
+        else {
             return productsRepository.findAll();
+        }
     }
 
     @GetMapping("/{id}")

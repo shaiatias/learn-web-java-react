@@ -10,7 +10,8 @@ import './App.css';
 class App extends Component {
 
     static propTypes = {
-        history: PropTypes.object.isRequired
+        history: PropTypes.object.isRequired,
+		auth: PropTypes.object.isRequired,
     };
 
     render() {

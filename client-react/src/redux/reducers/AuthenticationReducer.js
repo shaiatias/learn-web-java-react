@@ -1,5 +1,5 @@
 import {LOGIN_SUCCESS, LOGOUT_SUCCESS} from "../actions/authentication";
-import {RESET_ALL} from "../actions/users";
+import { RESET_ALL } from "../actions/reset";
 
 const initialState = {
     loggedIn: true

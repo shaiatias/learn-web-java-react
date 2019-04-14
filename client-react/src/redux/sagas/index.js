@@ -19,9 +19,9 @@ import {
 import {
 	UPDATE_QUANTITY_REQUEST,
 	CLEAR_CART_REQUEST,
-	LOAD_CART_REQUEST
+	LOAD_CART_REQUEST, CONFIRM_PAYMENT_REQUEST
 } from "../actions/cart";
-import { updateCartFlow, clearCartFlow, loadCartFlow } from "./CartSagas";
+import {updateCartFlow, clearCartFlow, loadCartFlow, confirmPaymentFlow} from "./CartSagas";
 
 function* root() {
 	yield takeLatest(LOGOUT_REQUEST, logoutFlow);
@@ -38,6 +38,8 @@ function* root() {
 	yield takeLatest(UPDATE_QUANTITY_REQUEST, updateCartFlow);
 	yield takeLatest(CLEAR_CART_REQUEST, clearCartFlow);
 	yield takeLatest(LOAD_CART_REQUEST, loadCartFlow);
+
+	yield takeLatest(CONFIRM_PAYMENT_REQUEST, confirmPaymentFlow);
 }
 
 export default root;

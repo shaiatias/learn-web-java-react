@@ -48,7 +48,7 @@ public class FillDb {
     }
 
     private void createSeller() {
-        User seller1 = usersRepository.findByEmail("seller1");
+        User seller1 = usersRepository.findByEmail("seller1@gmail.com");
 
         if (seller1 != null) {
             return;
@@ -58,13 +58,13 @@ public class FillDb {
     }
 
     private void createCustomer() {
-        User customer1 = usersRepository.findByEmail("customer1");
+        User customer1 = usersRepository.findByEmail("customer1@gmail.com");
 
         if (customer1 != null) {
             return;
         }
 
-        userService.createSeller(new UserRegisterRequest("customer1", "customer1@gmail.com", "customer1", "customer1"));
+        userService.createCustomer(new UserRegisterRequest("customer1", "customer1@gmail.com", "customer1", "customer1"));
     }
 
     private void createProducts() {
@@ -93,6 +93,6 @@ public class FillDb {
                 ));
 
         List<Product> products1 = productsRepository.saveAll(products);
-        logger.info("product saved %j", products1);
+        logger.info("product saved {}", products1);
     }
 }

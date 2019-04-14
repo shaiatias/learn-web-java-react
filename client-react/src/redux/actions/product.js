@@ -30,9 +30,12 @@ export const CREATE_PRODUCT_FAILED = "[PRODUCT] CREATE_PRODUCT_FAILED";
 
 export const LOAD_PRODUCT_REQUEST = "[PRODUCT] LOAD_PRODUCT_REQUEST";
 
-export const loadProduct = productId => ({
+export const loadProduct = (productId, force = false) => ({
 	type: LOAD_PRODUCT_REQUEST,
-	payload: { productId }
+	payload: { productId },
+	meta: {
+		force
+	}
 });
 
 export const LOAD_PRODUCT_SUCCESS = "[PRODUCT] LOAD_PRODUCT_SUCCESS";

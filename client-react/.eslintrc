@@ -21,6 +21,7 @@
 	},
 	"rules": {
 		"react/prefer-stateless-function": "warn",
+		"react/destructuring-assignment": "warn",
 		"import/first": "warn",
 		"linebreak-style": 0,
 		"react/prop-types": "warn",
@@ -33,6 +34,7 @@
 		"react/jsx-boolean-value": 0,
 		"no-mixed-operators": "error",
 		"no-else-return": "warn",
-		"no-underscore-dangle": "off"
+		"no-underscore-dangle": "off",
+		"no-shadow": "warn"
 	}
 }

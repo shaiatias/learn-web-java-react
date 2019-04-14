@@ -1,9 +1,11 @@
-import { RESET_ALL } from "../actions/users";
+import { RESET_ALL } from "../actions/reset";
 import { UPDATE_CART } from "../actions/cart";
 
 const initialState = {
 	items: {},
-	shipping: 0
+	subtotalPrice: 0,
+	shippingPrice: 0,
+	totalPrice: 0
 };
 
 export default (state = initialState, action) => {
