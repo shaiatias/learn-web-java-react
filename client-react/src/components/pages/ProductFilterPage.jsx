@@ -61,7 +61,7 @@ const ProductList = props => {
 				<Col sm={3}>
 				<Card
 					key={product.id}
-						className="p-0"
+						className="p-0 my-5"
 					onClick={() => props.navigateToProduct(product.id)}
 				>
 					<CardImg
