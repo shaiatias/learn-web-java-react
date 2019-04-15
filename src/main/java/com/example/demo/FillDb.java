@@ -90,7 +90,134 @@ public class FillDb {
                         Arrays.asList("new", "sale", "dress", "women"),
                         61.95,
                         Arrays.asList("new", "sale", "dress", "women")
-                ));
+                ),
+                new Product(
+                        null,
+                        "New Look wedding skinny fit suit jacket in mid grey",
+                        "ASOS",
+                        "New Look wedding skinny fit suit jacket in mid grey",
+                        "https://images.asos-media.com/products/new-look-wedding-skinny-fit-suit-jacket-in-mid-grey/8997111-1-midgrey?$n_240w$&wid=238&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("new", "suits", "men"),
+                        161.95,
+                        Arrays.asList("new", "suits", "men")
+                ),
+                new Product(
+                        null,
+                        "Harry Brown wedding wool blend slim fit summer tweed suit",
+                        "CK Clein",
+                        "Harry Brown wedding wool blend slim fit summer tweed suit",
+                        "https://images.asos-media.com/products/boohooman-skinny-fit-large-check-suit-jacket-in-red/10935352-1-red?$n_240w$&wid=238&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("sale", "suits", "men"),
+                        200,
+                        Arrays.asList("sale", "suits", "men")
+                ),
+                new Product(
+                        null,
+                        "New Look sweat with Colorado print in burgundy",
+                        "Colorado",
+                        "New Look sweat with Colorado print in burgundy",
+                        "https://images.asos-media.com/products/new-look-sweat-with-colorado-print-in-burgundy/10876818-1-darkburgundy?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("sale", "training", "men"),
+                        73,
+                        Arrays.asList("sale", "training", "men")
+                ),
+                new Product(
+                        null,
+                        "Gym King piped poly funnel neck tracksuit top",
+                        "Gym King",
+                        "Gym King piped poly funnel neck tracksuit top",
+                        "https://images.asos-media.com/products/gym-king-piped-poly-funnel-neck-tracksuit-top/11836264-1-grey?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("new", "sale", "training", "men"),
+                        28.50,
+                        Arrays.asList("new", "sale", "training", "men")
+                ),
+                new Product(
+                        null,
+                        "Selected Homme leather mix trainers in black" ,
+                        "Adidax",
+                        "Selected Homme leather mix trainers in black",
+                        "https://images.asos-media.com/products/selected-homme-leather-mix-trainers-in-black/11713450-1-black?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("new", "shoes", "men"),
+                        11.99,
+                        Arrays.asList("new", "shoes", "men")
+                ),
+                new Product(
+                        null,
+                        "Brave Soul cross strap sliders in black" ,
+                        "Naim",
+                        "Brave Soul cross strap sliders in black",
+                        "https://images.asos-media.com/products/brave-soul-cross-strap-sliders-in-black/11392818-1-black?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("sale", "shoes", "men"),
+                        11.99,
+                        Arrays.asList("sale", "shoes", "men")
+                ),
+                new Product(
+                        null,
+                        "New Look faux suede cross strap wedges in mid brown" ,
+                        "New Look",
+                        "New Look faux suede cross strap wedges in mid brown",
+                        "https://images.asos-media.com/products/new-look-faux-suede-cross-strap-wedges-in-mid-brown/11481268-1-midbrown?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("new", "shoes", "women"),
+                        99.99,
+                        Arrays.asList("new", "shoes", "women")
+                ),
+                new Product(
+                        null,
+                        "Glamorous studded slip on shoe" ,
+                        "Glamour shoes",
+                        "Glamorous studded slip on shoe",
+                        "https://images.asos-media.com/products/glamorous-studded-slip-on-shoe/10744695-1-black?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("sale", "shoes", "women"),
+                        11.99,
+                        Arrays.asList("sale", "shoes", "women")
+                ),
+                new Product(
+                        null,
+                        "New Look tailored coat in mustard tartan" ,
+                        "Best coats",
+                        "New Look tailored coat in mustard tartan",
+                        "https://images.asos-media.com/products/new-look-tailored-coat-in-mustard-tartan/10905044-1-yellowpattern?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("sale", "coats", "women"),
+                        171.99,
+                        Arrays.asList("sale", "coats", "women")
+                ),
+                new Product(
+                        null,
+                        "New  cross strap wedges in mid brown" ,
+                        "New Look",
+                        "New  cross strap wedges in mid brown",
+                        "https://images.asos-media.com/products/new-look-faux-borg-lined-parka/11243277-1-darkkhaki?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("new", "coats", "women"),
+                        299.99,
+                        Arrays.asList("new", "coats", "women")
+                ),
+                new Product(
+                        null,
+                        "QED London cape in border print" ,
+                        "QED",
+                        "QED London cape in border print",
+                        "https://images.asos-media.com/products/qed-london-cape-in-border-print/10700173-1-pinknavy?$n_320w$&wid=317&fit=constrain",
+                        Arrays.asList("S", "L", "XL"),
+                        Arrays.asList("sale","new", "jeans", "women"),
+                        11.99,
+                        Arrays.asList("sale", "jeans", "women")
+                )
+
+
+
+
+
+                );
 
         List<Product> products1 = productsRepository.saveAll(products);
         logger.info("product saved {}", products1);

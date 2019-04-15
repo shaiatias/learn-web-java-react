@@ -1,0 +1,4 @@
+.products-rows{
+	display: flex;
+	flex-direction: row;
+}

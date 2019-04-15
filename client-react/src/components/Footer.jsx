@@ -1,30 +1,39 @@
 import React from "react";
 import Container from "reactstrap/es/Container";
 import { Col, Nav, NavItem, NavLink, Row } from "reactstrap";
+import { NavLink as RouterNavLink } from "react-router-dom";
 import "./Footer.css";
 
 export default () => (
 	<div className={"bg-dark footer"}>
 		<Container className={"py-5 px-4"}>
 			<Row>
-				<Col md={3}>Icon</Col>
-				<Col md={3}>
-					<Nav vertical>
+				<Col md={4}>Icon</Col>
+				<Col md={4}>
+					<Nav horizontal>
 						<NavItem>
-							<NavLink href="#">New</NavLink>
+							<NavLink to="/category/new" tag={RouterNavLink}>
+								New
+							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="#">Sale</NavLink>
+							<NavLink tag={RouterNavLink} to="/category/sale">
+								Sale
+							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="#">Woman</NavLink>
+							<NavLink to="/category/women" tag={RouterNavLink}>
+								Women
+							</NavLink>
 						</NavItem>
 						<NavItem>
-							<NavLink href="#">Man</NavLink>
+							<NavLink to="/category/men" tag={RouterNavLink}>
+								Men
+							</NavLink>
 						</NavItem>
 					</Nav>
 				</Col>
-				<Col md={3}>
+				{/* <Col md={3}>
 					<Nav vertical>
 						<NavItem>
 							<NavLink href="#">My Orders</NavLink>
@@ -36,9 +45,9 @@ export default () => (
 							<NavLink href="#">My Profile</NavLink>
 						</NavItem>
 					</Nav>
-				</Col>
-				<Col md={3}>
-					<Nav vertical>
+				</Col> */}
+				<Col md={4}>
+					<Nav horizontal>
 						<NavItem>
 							<NavLink href="#">About</NavLink>
 						</NavItem>

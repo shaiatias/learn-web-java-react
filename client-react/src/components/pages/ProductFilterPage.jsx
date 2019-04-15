@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { push } from "connected-react-router";
 import {
+	Col,
 	Card,
 	CardDeck,
 	CardBody,
@@ -11,6 +12,7 @@ import {
 } from "reactstrap";
 
 import HomepageLayout from "../Layouts/HomepageLayout";
+import "./ProductFilterPage.css";
 import {
 	loadProduct,
 	loadProductByCategories
@@ -54,11 +56,12 @@ class ProductFilterPage extends Component {
 
 const ProductList = props => {
 	return (
-		<CardDeck>
+		<CardDeck className="products-rows">
 			{props.products.map(product => (
+				<Col sm={3}>
 				<Card
 					key={product.id}
-					className="col-md-3 p-0"
+						className="p-0"
 					onClick={() => props.navigateToProduct(product.id)}
 				>
 					<CardImg
@@ -72,6 +75,9 @@ const ProductList = props => {
 						<CardSubtitle>{product.price}$</CardSubtitle>
 					</CardBody>
 				</Card>
+				
+				
+				</Col>
 			))}
 		</CardDeck>
 	);

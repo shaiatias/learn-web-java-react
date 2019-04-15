@@ -22,7 +22,6 @@ import { getCartItemCount } from "../redux/reducers/CartReducer";
 import { loadCart } from "../redux/actions/cart";
 
 class Header extends Component {
-
 	static propTypes = {
 		loggedIn: PropTypes.any,
 		requestLogout: PropTypes.any,
@@ -46,7 +45,12 @@ class Header extends Component {
 		return (
 			<div className="bg-light">
 				<Container>
-					<Navbar color="light" light expand="sm" className={"px-0"}>
+					<Navbar
+						color="light"
+						light
+						expand="sm"
+						className={"px-0"}
+					>
 						<NavbarBrand to="/" tag={RouterNavLink}>
 							The Old Asos
 						</NavbarBrand>
@@ -71,7 +75,7 @@ class Header extends Component {
 								</NavItem>
 								<NavItem>
 									<NavLink
-										to="/category/woman"
+										to="/category/women"
 										tag={RouterNavLink}
 									>
 										Women
@@ -79,14 +83,17 @@ class Header extends Component {
 								</NavItem>
 								<NavItem>
 									<NavLink
-										to="/category/man"
+										to="/category/men"
 										tag={RouterNavLink}
 									>
 										Men
 									</NavLink>
 								</NavItem>
 								<NavItem>
-									<NavLink to="/cart" tag={RouterNavLink}>
+									<NavLink
+										to="/cart"
+										tag={RouterNavLink}
+									>
 										Cart ({cartCount})
 									</NavLink>
 								</NavItem>
@@ -111,12 +118,26 @@ class Header extends Component {
 												</NavLink>
 											</Fragment>
 										)}
-										<DropdownItem>Option 1</DropdownItem>
+										<DropdownItem>
+											Option 1
+										</DropdownItem>
 										{loggedIn && (
 											<Fragment>
 												<DropdownItem divider />
-												<DropdownItem onClick={requestLogout}>
+												<DropdownItem
+													onClick={
+														requestLogout
+													}
+												>
 													logout
+												</DropdownItem>
+												<DropdownItem divider />
+												<DropdownItem
+													onClick={
+														requestLogout
+													}
+												>
+													My orders
 												</DropdownItem>
 											</Fragment>
 										)}
