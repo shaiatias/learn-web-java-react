@@ -52,7 +52,7 @@ class Header extends Component {
 						color="light"
 						light
 						expand="sm"
-						className={"px-2 py-3"}
+						className={"px-4 py-3"}
 					>
 						<NavbarBrand to="/" tag={RouterNavLink}>
 							asos
