@@ -212,14 +212,16 @@ public class FillDb {
                         11.99,
                         Arrays.asList("sale", "jeans", "women")
                 )
+        );
 
+        products.forEach(product -> {
 
+            if (!productsRepository.findByName(product.getName()).isPresent()) {
 
+                productsRepository.save(product);
+                logger.info("product saved {}", product);
+            }
 
-
-                );
-
-        List<Product> products1 = productsRepository.saveAll(products);
-        logger.info("product saved {}", products1);
+        });
     }
 }
