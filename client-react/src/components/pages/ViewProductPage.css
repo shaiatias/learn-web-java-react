@@ -1,0 +1,7 @@
+.ProductPage.container {
+	max-width: 900px;
+}
+
+.ProductPage img {
+	width: 100%;
+}

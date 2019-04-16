@@ -1,4 +1,17 @@
-.products-rows{
+.products-rows {
 	display: flex;
 	flex-direction: row;
+}
+
+.cursor-pointer {
+	cursor: pointer;
+}
+
+.card {
+	transform: scale(1);
+	transition: all 0.2s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.card:hover {
+	transform: scale(1.1);
 }

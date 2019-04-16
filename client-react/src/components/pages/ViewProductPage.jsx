@@ -7,12 +7,12 @@ import { loadProduct } from "../../redux/actions/product";
 import { getProductById } from "../../redux/reducers/ProductReducer";
 import { addItemToCart } from "../../redux/actions/cart";
 
+import "./ViewProductPage.css";
+
 class ViewProductPage extends Component {
 	componentDidMount() {
 		const { productId } = this.props.match.params;
-		setTimeout(() => {
-			this.props.loadProduct(productId);
-		}, 0);
+		this.props.loadProduct(productId);
 	}
 
 	render() {
@@ -26,6 +26,7 @@ class ViewProductPage extends Component {
 		) : (
 			<div>loading</div>
 		);
+
 		return <HomepageLayout>{ProductEl}</HomepageLayout>;
 	}
 }
@@ -48,40 +49,50 @@ const ProductPage = ({ product, addItemToCart }) => {
 
 	return (
 		<Fragment>
-			<Row>
-				<Col>
+			<Row className="my-4">
+				<Col md={8} className="text-right">
 					<img src={product.imageUrl} alt={product.description} />
 				</Col>
 				<Col>
-					<Row>
-						<Col>{product.name}</Col>
+					<Row className="my-4">
+						<Col className="lead">{product.name}</Col>
 					</Row>
-					<Row>
-						<Col>{product.price}$</Col>
+					<Row className="my-4">
+						<Col tag="strong">{product.price}$</Col>
 					</Row>
-					<Form onSubmit={e => handleSubmit(e)}>
-						<FormGroup block>
-							<Label>Size:</Label>
-							<Input
-								type="select"
-								onChange={e => handleMultiSelectChange(e)}
-							>
-								{product.availableSizes.map(size => (
-									<option key={size}>{size}</option>
-								))}
-							</Input>
-						</FormGroup>
-						<Button block>Add To Cart</Button>
-					</Form>
+					<Row className="my-4">
+						<Col>
+							<Form onSubmit={e => handleSubmit(e)}>
+								<FormGroup block>
+									<Label>SIZE</Label>
+									<Input
+										type="select"
+										onChange={e =>
+											handleMultiSelectChange(e)
+										}
+									>
+										{product.availableSizes.map(size => (
+											<option key={size}>{size}</option>
+										))}
+									</Input>
+								</FormGroup>
+								<Button
+									block
+									color={"primary"}
+									className="text-uppercase p-2"
+								>
+									Add To Cart
+								</Button>
+							</Form>
+						</Col>
+					</Row>
 				</Col>
 			</Row>
 			<Row>
 				<Col>
 					<h5>Product Details</h5>
-					<p>{product.description}</p>
+					<p className="lead">{product.description}</p>
 				</Col>
-				<Col>TBD</Col>
-				<Col>TBD</Col>
 			</Row>
 			<Row>
 				<RecentlyViewed />
@@ -90,7 +101,7 @@ const ProductPage = ({ product, addItemToCart }) => {
 	);
 };
 
-const RecentlyViewed = () => <div>TBD</div>;
+const RecentlyViewed = () => <div />;
 
 const mapStateToProps = state => ({
 	products: state.products

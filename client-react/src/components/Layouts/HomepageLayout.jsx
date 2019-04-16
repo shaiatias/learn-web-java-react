@@ -8,12 +8,19 @@ import Footer from "../Footer";
 
 class HomepageLayout extends Component {
 	render() {
-		const { children, className } = this.props;
+		const { children } = this.props;
+
+		const pageName =
+			(children && children.type && children.type.name) || "";
+
+		const className = this.props.className || "";
 
 		return (
 			<div className={"page-wrapper"}>
 				<Header />
-				<Container className={`content-min-height py-4 ${className}`}>
+				<Container
+					className={`content-min-height py-4 ${pageName} ${className}`}
+				>
 					{children}
 				</Container>
 				<Footer />

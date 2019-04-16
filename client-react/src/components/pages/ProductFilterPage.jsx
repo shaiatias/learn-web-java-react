@@ -12,13 +12,14 @@ import {
 } from "reactstrap";
 
 import HomepageLayout from "../Layouts/HomepageLayout";
-import "./ProductFilterPage.css";
 import {
 	loadProduct,
 	loadProductByCategories
 } from "../../redux/actions/product";
 import { addItemToCart } from "../../redux/actions/cart";
 import { getProductByCategory } from "../../redux/reducers/ProductReducer";
+
+import "./ProductFilterPage.css";
 
 class ProductFilterPage extends Component {
 	componentDidMount() {
@@ -59,24 +60,24 @@ const ProductList = props => {
 		<CardDeck className="products-rows">
 			{props.products.map(product => (
 				<Col sm={3}>
-				<Card
-					key={product.id}
-						className="p-0 my-5"
-					onClick={() => props.navigateToProduct(product.id)}
-				>
-					<CardImg
-						top
-						width="100%"
-						src={product.imageUrl}
-						alt={product.description}
-					/>
-					<CardBody>
-						<CardTitle>{product.name}</CardTitle>
-						<CardSubtitle>{product.price}$</CardSubtitle>
-					</CardBody>
-				</Card>
-				
-				
+					<Card
+						key={product.id}
+						className="p-0 my-4 mx-0 cursor-pointer"
+						onClick={() => props.navigateToProduct(product.id)}
+					>
+						<CardImg
+							top
+							width="100%"
+							src={product.imageUrl}
+							alt={product.description}
+						/>
+						<CardBody>
+							<CardTitle className="text-nowrap overflow-hidden">
+								{product.name}
+							</CardTitle>
+							<CardSubtitle>{product.price}$</CardSubtitle>
+						</CardBody>
+					</Card>
 				</Col>
 			))}
 		</CardDeck>
