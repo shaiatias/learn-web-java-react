@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ProductsRepository extends MongoRepository<Product, String> {
@@ -21,4 +22,6 @@ public interface ProductsRepository extends MongoRepository<Product, String> {
 
     @Query("{ 'categories' : { $all : ?0 } }")
     List<Product> findByAllCategories(List<String> categories);
+
+    Optional<Product> findByName(String name);
 }
