@@ -1,5 +1,8 @@
-import {RESET_ALL} from "../actions/reset";
-import {CREATE_PRODUCT_SUCCESS, LOAD_FILTERED_PRODUCTS_SUCCESS, LOAD_PRODUCT_SUCCESS} from "../actions/product";
+import {
+	CREATE_PRODUCT_SUCCESS,
+	LOAD_FILTERED_PRODUCTS_SUCCESS,
+	LOAD_PRODUCT_SUCCESS
+} from "../actions/product";
 
 const initialState = {
 	products: {},
@@ -45,9 +48,6 @@ export default (state = initialState, action) => {
 					[action.payload.id]: action.payload
 				}
 			};
-
-		case RESET_ALL:
-			return {...initialState};
 
 		default:
 			return state;

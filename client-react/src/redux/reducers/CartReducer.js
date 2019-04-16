@@ -1,4 +1,3 @@
-import { RESET_ALL } from "../actions/reset";
 import { UPDATE_CART } from "../actions/cart";
 
 const initialState = {
@@ -14,11 +13,6 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				items: action.payload
-			};
-
-		case RESET_ALL:
-			return {
-				...initialState
 			};
 
 		default:

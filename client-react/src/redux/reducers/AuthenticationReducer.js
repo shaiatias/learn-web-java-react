@@ -1,32 +1,42 @@
-import {LOGIN_SUCCESS, LOGOUT_SUCCESS} from "../actions/authentication";
-import { RESET_ALL } from "../actions/reset";
+import {
+	LOGIN_SUCCESS,
+	LOGOUT_SUCCESS,
+	LOGIN_FAILED,
+	LOGIN_REQUEST
+} from "../actions/authentication";
 
 const initialState = {
-    loggedIn: true
+	loggedIn: false,
+	loggingIn: true,
+	user: null
 };
 
 export default (state = initialState, action) => {
+	switch (action.type) {
+		case LOGIN_REQUEST:
+			return {
+				...state,
+				loggingIn: true
+			};
 
-    switch (action.type) {
+		case LOGIN_SUCCESS:
+			return {
+				...state,
+				loggedIn: true,
+				loggingIn: false,
+				user: action.payload
+			};
 
-        case LOGIN_SUCCESS:
-            return {
-                ...state,
-                loggedIn: true
-            };
+		case LOGIN_FAILED:
+		case LOGOUT_SUCCESS:
+			return {
+				...state,
+				loggedIn: false,
+				loggingIn: false,
+				user: null
+			};
 
-        case LOGOUT_SUCCESS:
-            return {
-                ...state,
-                loggedIn: false
-            };
-
-        case RESET_ALL:
-            return {
-                ...initialState
-            };
-
-        default:
-            return state;
-    }
+		default:
+			return state;
+	}
 };

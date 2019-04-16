@@ -36,6 +36,6 @@ const createInitialStore = (initialState) => {
 
 const store = createInitialStore();
 
-sagaMiddleware.run(sagas);
+sagas.run(sagaMiddleware);
 
 export { store, history, createInitialStore };

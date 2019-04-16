@@ -7,25 +7,22 @@ import {
 	REGISTER_FAILED
 } from "../actions/authentication";
 
-import { RESET_ALL } from "../actions/reset";
 
 import { Api } from "./Api";
 
 export function* logoutFlow(action) {
-	localStorage.clear();
-
-	yield put({ type: RESET_ALL });
-
-	yield put({ type: LOGOUT_SUCCESS });
+	// localStorage.clear();
+	// yield put({ type: LOGOUT_SUCCESS });
 }
 
 export function* loginFlow(action) {
-	try {
-		yield call(Api.login, action.payload.email, action.payload.password);
-		yield put({ type: LOGIN_SUCCESS });
-	} catch (e) {
-		yield put({ type: LOGIN_FAILED, payload: e });
-	}
+	// try {
+	// 	const user = yield call(Api.login, action.payload.email, action.payload.password);
+	// 	localStorage.setItem("user", user);
+	// 	yield put({ type: LOGIN_SUCCESS, payload: user });
+	// } catch (e) {
+	// 	yield put({ type: LOGIN_FAILED, payload: e });
+	// }
 }
 
 export function* registerFlow(action) {

@@ -1,14 +1,30 @@
-
 export const Api = {
 	*login(email, password) {
-		const creds = btoa(`${email}:${password}`);
+		const headers = {
+			"Content-Type": "application/json"
+		};
+
+		if (email && password) {
+			const creds = btoa(`${email}:${password}`);
+			headers["Authorization"] = `Basic ${creds}`;
+		}
 
 		const res = yield fetch("/auth/login", {
 			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Basic ${creds}`
-			}
+			headers
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+
+	*logout() {
+		const res = yield fetch("/auth/logout", {
+			method: "POST"
 		});
 
 		if (res.ok) {
@@ -154,15 +170,32 @@ export const Api = {
 		}
 	},
 
-	*confirmPayment(name, email, country, state, zip, cc, expYear, expMonth, cvv) {
-
+	*confirmPayment(
+		name,
+		email,
+		country,
+		state,
+		zip,
+		cc,
+		expYear,
+		expMonth,
+		cvv
+	) {
 		const res = yield fetch("/api/checkout", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json"
 			},
 			body: JSON.stringify({
-				name, email, country, state, zip, cc, expYear, expMonth, cvv
+				name,
+				email,
+				country,
+				state,
+				zip,
+				cc,
+				expYear,
+				expMonth,
+				cvv
 			})
 		});
 

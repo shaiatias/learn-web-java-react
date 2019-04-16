@@ -1,5 +1,5 @@
-import React, {Fragment} from "react";
-import {Route, Switch} from "react-router-dom";
+import React, { Fragment } from "react";
+import { Route, Switch } from "react-router-dom";
 import LoginPage from "./components/pages/LoginPage";
 import ViewProductPage from "./components/pages/ViewProductPage";
 import RegisterPage from "./components/pages/RegisterPage";
@@ -13,22 +13,21 @@ import ManagementRoute from "./components/Guards/ManagementRoute";
 import OrderDetailsPage from "./components/pages/OrderDetailsPage";
 import OrdersPage from "./components/pages/OrdersPage";
 
-const routes = (auth) => (
+const routes = auth => (
 	<Fragment>
 		<Switch>
-
 			<Route
 				exact
 				path="/"
-				render={() => <ProductFilterPage category={"new"}/>}
+				render={() => <ProductFilterPage category={"new"} />}
 			/>
 
 			<Route
 				exact
 				path="/category/:category?"
 				render={props => {
-					const {category} = props.match.params;
-					return <ProductFilterPage category={category}/>;
+					const { category } = props.match.params;
+					return <ProductFilterPage category={category} />;
 				}}
 			/>
 
@@ -38,22 +37,29 @@ const routes = (auth) => (
 				component={ViewProductPage}
 			/>
 
-			<AnonymousRoute exact path="/login" component={LoginPage}/>
-			<AnonymousRoute exact path="/register" component={RegisterPage}/>
+			<AnonymousRoute exact path="/login" component={LoginPage} />
+			<AnonymousRoute exact path="/register" component={RegisterPage} />
 
-			<Route exact path="/cart" component={CartPage}/>
-			<AuthenticatedRoute exact path="/checkout" component={CheckoutPage}/>
+			<Route exact path="/cart" component={CartPage} />
+			<AuthenticatedRoute
+				exact
+				path="/checkout"
+				component={CheckoutPage}
+			/>
 
-			<AuthenticatedRoute exact path="/orders" component={OrdersPage}/>
-			<AuthenticatedRoute exact path="/order/:id" component={OrderDetailsPage}/>
+			<AuthenticatedRoute exact path="/orders" component={OrdersPage} />
+			<AuthenticatedRoute
+				exact
+				path="/order/:id"
+				component={OrderDetailsPage}
+			/>
 
 			<ManagementRoute
 				exact
-				requiredScope={"products:manage"}
+				requiredRole={"ROLE_ADMIN"}
 				path="/manage/product/:itemId?"
 				component={CreateProductPage}
 			/>
-
 		</Switch>
 	</Fragment>
 );
