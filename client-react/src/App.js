@@ -1,34 +1,30 @@
-import React, {Component} from 'react';
-import {connect} from "react-redux";
+import React, { Component } from "react";
+import { connect } from "react-redux";
 import PropTypes from "prop-types";
 
-import {ConnectedRouter} from "connected-react-router";
+import { ConnectedRouter } from "connected-react-router";
 
+import "./Icons";
 import routes from "./routes";
-import './App.css';
+import "./App.css";
 
 class App extends Component {
+	static propTypes = {
+		history: PropTypes.object.isRequired,
+		auth: PropTypes.object.isRequired
+	};
 
-    static propTypes = {
-        history: PropTypes.object.isRequired,
-		auth: PropTypes.object.isRequired,
-    };
+	render() {
+		const { history, auth } = this.props;
 
-    render() {
-        const {history, auth} = this.props;
-
-        return (
-            <ConnectedRouter history={history}>
-                {routes(auth)}
-            </ConnectedRouter>
-        );
-    }
+		return (
+			<ConnectedRouter history={history}>{routes(auth)}</ConnectedRouter>
+		);
+	}
 }
 
 const mapStateToProps = (state, ownProps) => ({
-    auth: {}
+	auth: {}
 });
 
-export default connect(
-    mapStateToProps
-)(App);
+export default connect(mapStateToProps)(App);

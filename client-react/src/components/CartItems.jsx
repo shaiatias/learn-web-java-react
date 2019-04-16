@@ -1,18 +1,17 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import ListGroupItem from "reactstrap/es/ListGroupItem";
-import {Button, Col, Row} from "reactstrap";
+import { Button, Col, Row } from "reactstrap";
 import ListGroup from "reactstrap/es/ListGroup";
-import {connect} from "react-redux";
+import { connect } from "react-redux";
 
 import "./CartItems.css";
-import {updateItemQuantity} from "../redux/actions/cart";
-import {loadProduct} from "../redux/actions/product";
-import {getProductById} from "../redux/reducers/ProductReducer";
+import { updateItemQuantity } from "../redux/actions/cart";
+import { loadProduct } from "../redux/actions/product";
+import { getProductById } from "../redux/reducers/ProductReducer";
 
 class CartItems extends Component {
-
 	componentDidMount() {
-		const {loadProduct, items} = this.props;
+		const { loadProduct, items } = this.props;
 
 		Object.keys(items).forEach(productId => {
 			loadProduct(productId);
@@ -20,7 +19,11 @@ class CartItems extends Component {
 	}
 
 	render() {
-		const {items, updateItemQuantity, products: productsReducerState} = this.props;
+		const {
+			items,
+			updateItemQuantity,
+			products: productsReducerState
+		} = this.props;
 
 		const products = Object.keys(items)
 			.map(productId => getProductById(productsReducerState, productId))
@@ -28,12 +31,15 @@ class CartItems extends Component {
 			.map(product => ({
 				...items[product.id],
 				...product
-			}))
+			}));
 
 		return (
 			<ListGroup className={"my-3"}>
 				{products.map(item => (
-					<ListGroupItem className="justify-content-between cart-item-row">
+					<ListGroupItem
+						key={item.productId}
+						className="justify-content-between cart-item-row"
+					>
 						<Row>
 							<Col className={"text-center"}>
 								<img
@@ -92,7 +98,7 @@ class CartItems extends Component {
 }
 
 const mapStateToProps = state => ({
-	products: state.products,
+	products: state.products
 });
 
 const mapDispatchToProps = {

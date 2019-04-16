@@ -3,6 +3,8 @@ import { connect } from "react-redux";
 import { NavLink as RouterNavLink } from "react-router-dom";
 import * as PropTypes from "prop-types";
 import {
+	Badge,
+	Button,
 	Collapse,
 	Container,
 	DropdownItem,
@@ -16,6 +18,7 @@ import {
 	NavLink,
 	UncontrolledDropdown
 } from "reactstrap";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { requestLogout } from "../redux/actions/authentication";
 import { getCartItemCount } from "../redux/reducers/CartReducer";
@@ -44,35 +47,19 @@ class Header extends Component {
 		const { loggedIn, requestLogout, cartCount } = this.props;
 		return (
 			<div className="bg-light">
-				<Container>
+				<Container fluid>
 					<Navbar
 						color="light"
 						light
 						expand="sm"
-						className={"px-0"}
+						className={"px-2 py-3"}
 					>
 						<NavbarBrand to="/" tag={RouterNavLink}>
-							The Old Asos
+							asos
 						</NavbarBrand>
 						<NavbarToggler onClick={this.toggle} />
 						<Collapse isOpen={this.state.isOpen} navbar>
-							<Nav className="ml-auto" navbar>
-								<NavItem>
-									<NavLink
-										to="/category/new"
-										tag={RouterNavLink}
-									>
-										New
-									</NavLink>
-								</NavItem>
-								<NavItem>
-									<NavLink
-										tag={RouterNavLink}
-										to="/category/sale"
-									>
-										Sale
-									</NavLink>
-								</NavItem>
+							<Nav navbar className="mr-auto">
 								<NavItem>
 									<NavLink
 										to="/category/women"
@@ -91,15 +78,39 @@ class Header extends Component {
 								</NavItem>
 								<NavItem>
 									<NavLink
-										to="/cart"
+										to="/category/new"
 										tag={RouterNavLink}
 									>
-										Cart ({cartCount})
+										New
 									</NavLink>
 								</NavItem>
-								<UncontrolledDropdown nav inNavbar>
-									<DropdownToggle nav caret>
-										Options
+								<NavItem>
+									<NavLink
+										tag={RouterNavLink}
+										to="/category/sale"
+									>
+										Sale
+									</NavLink>
+								</NavItem>
+							</Nav>
+							<Nav navbar>
+								<NavItem>
+									<NavLink to="/cart" tag={RouterNavLink}>
+										<Button color={"link"}>
+											<FontAwesomeIcon icon="shopping-cart" />
+											<Badge pill className="ml-2">
+												({cartCount})
+											</Badge>
+										</Button>
+									</NavLink>
+								</NavItem>
+								<UncontrolledDropdown
+									nav
+									inNavbar
+									className="d-flex align-items-center"
+								>
+									<DropdownToggle nav>
+										<FontAwesomeIcon icon="user" />
 									</DropdownToggle>
 									<DropdownMenu right>
 										{!loggedIn && (
@@ -118,26 +129,19 @@ class Header extends Component {
 												</NavLink>
 											</Fragment>
 										)}
-										<DropdownItem>
-											Option 1
-										</DropdownItem>
 										{loggedIn && (
 											<Fragment>
-												<DropdownItem divider />
-												<DropdownItem
-													onClick={
-														requestLogout
-													}
-												>
-													logout
+												<DropdownItem>
+													Profile
+												</DropdownItem>
+												<DropdownItem>
+													My orders
 												</DropdownItem>
 												<DropdownItem divider />
 												<DropdownItem
-													onClick={
-														requestLogout
-													}
+													onClick={requestLogout}
 												>
-													My orders
+													Logout
 												</DropdownItem>
 											</Fragment>
 										)}
