@@ -1,11 +1,15 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 
+import {loadOrder} from "../../redux/actions/orders";
+import {getOrderById} from "../../redux/reducers/OrdersReducer";
 import HomepageLayout from "../Layouts/HomepageLayout";
 
 class OrderDetailsPage extends Component {
 
 	componentDidMount() {
+		const {id: orderId} = this.props.match.params;
+		this.props.loadOrder(orderId);
 	}
 
 	render() {
@@ -18,13 +22,13 @@ class OrderDetailsPage extends Component {
 	}
 }
 
-const mapStateToProps = state => ({
-
+const mapStateToProps = (state, ownProps) => ({
+	order: getOrderById(state.orders, ownProps.match.params.id)
 });
 
-const mapDispatchToProps = dispatch => ({
-
-});
+const mapDispatchToProps = {
+	loadOrder
+};
 
 export default connect(
 	mapStateToProps,

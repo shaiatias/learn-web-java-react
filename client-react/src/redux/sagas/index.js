@@ -1,4 +1,4 @@
-import { takeLatest, delay, take, call, put } from "redux-saga/effects";
+import { takeLatest, take, call, put } from "redux-saga/effects";
 import { push } from "connected-react-router";
 
 import {
@@ -10,7 +10,7 @@ import {
 	REGISTER_REQUEST,
 	requestLogin
 } from "../actions/authentication";
-import { logoutFlow, loginFlow, registerFlow } from "./AuthSagas";
+import { registerFlow } from "./AuthSagas";
 import { Api } from "./Api";
 
 import { loadCart } from "../actions/cart";
@@ -38,9 +38,10 @@ import {
 	confirmPaymentFlow
 } from "./CartSagas";
 
+import {loadOrderFlow} from "./OrdersSagas";
+import { LOAD_ORDER_REQUEST } from "../actions/orders";
+
 function* root() {
-	// yield takeLatest(LOGOUT_REQUEST, logoutFlow);
-	// yield takeLatest(LOGIN_REQUEST, loginFlow);
 	yield takeLatest(REGISTER_REQUEST, registerFlow);
 
 	yield takeLatest(CREATE_PRODUCT_REQUEST, createProductFlow);
@@ -53,6 +54,8 @@ function* root() {
 	yield takeLatest(UPDATE_QUANTITY_REQUEST, updateCartFlow);
 	yield takeLatest(CLEAR_CART_REQUEST, clearCartFlow);
 	yield takeLatest(LOAD_CART_REQUEST, loadCartFlow);
+
+	yield takeLatest(LOAD_ORDER_REQUEST, loadOrderFlow);
 
 	yield takeLatest(CONFIRM_PAYMENT_REQUEST, confirmPaymentFlow);
 }

@@ -4,6 +4,7 @@ import {connectRouter} from "connected-react-router";
 import authentication from "./AuthenticationReducer";
 import cart from "./CartReducer";
 import products from "./ProductReducer";
+import orders from "./OrdersReducer";
 
 export default history =>
 	combineReducers({
@@ -12,5 +13,6 @@ export default history =>
 		authentication,
 		cart,
 
-		products
+		products,
+		orders
 	});

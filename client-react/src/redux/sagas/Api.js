@@ -169,6 +169,24 @@ export const Api = {
 			throw Error(err);
 		}
 	},
+	
+	*getOrderById(orderId) {
+		const url = `/api/orders/${orderId}`;
+
+		const res = yield fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
 
 	*confirmPayment(
 		name,
@@ -205,5 +223,6 @@ export const Api = {
 			const err = yield res.text();
 			throw Error(err);
 		}
-	}
+	},
+	
 };
