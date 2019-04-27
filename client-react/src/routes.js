@@ -44,6 +44,7 @@ const routes = auth => (
 			<AuthenticatedRoute
 				exact
 				path="/checkout"
+				anonymousPath="/login"
 				component={CheckoutPage}
 			/>
 

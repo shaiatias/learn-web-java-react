@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import PropTypes from "prop-types";
 import {Redirect, Route} from "react-router-dom";
 import {connect} from "react-redux";
 
@@ -14,12 +15,17 @@ class AuthenticatedRoute extends Component {
 			if (!props.component && !props.render) {
 				return new Error(`One of props 'component' or 'render' was not specified in '${componentName}'.`);
 			}
-		}
+		},
+		anonymousPath: PropTypes.string.isRequired
+	};
+
+	static defaultProps = {
+		anonymousPath: "/"
 	};
 
 	render() {
 
-		const {loggedIn} = this.props;
+		const {loggedIn, anonymousPath} = this.props;
 
 		if (!loggedIn) {
 
@@ -28,7 +34,7 @@ class AuthenticatedRoute extends Component {
 					render={props =>
 						<Redirect
 							to={{
-								pathname: "/",
+								pathname: anonymousPath,
 								state: {from: this.props.location}
 							}}
 						/>
