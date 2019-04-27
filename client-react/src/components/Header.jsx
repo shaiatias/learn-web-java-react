@@ -94,16 +94,6 @@ class Header extends Component {
 								</NavItem>
 							</Nav>
 							<Nav navbar>
-								<NavItem>
-									<NavLink to="/cart" tag={RouterNavLink}>
-										<Button color={"link"}>
-											<FontAwesomeIcon icon="shopping-cart" />
-											<Badge pill className="ml-2">
-												({cartCount})
-											</Badge>
-										</Button>
-									</NavLink>
-								</NavItem>
 								<UncontrolledDropdown
 									nav
 									inNavbar
@@ -157,6 +147,18 @@ class Header extends Component {
 										)}
 									</DropdownMenu>
 								</UncontrolledDropdown>
+								<NavItem>
+									<NavLink to="/cart" tag={RouterNavLink}>
+										<Button color={"link"}>
+											<FontAwesomeIcon icon="shopping-cart" />
+											{cartCount > 0 &&
+												<Badge pill className="ml-2">
+													({cartCount})
+												</Badge>
+											}
+										</Button>
+									</NavLink>
+								</NavItem>
 							</Nav>
 						</Collapse>
 					</Navbar>

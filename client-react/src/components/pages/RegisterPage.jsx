@@ -38,6 +38,7 @@ class RegisterPage extends Component {
 		return (
 			<LoginLayout>
 				<form name="form" onSubmit={this.handleSubmit}>
+					<h3 className="mb-4">Register</h3>
 					<div
 						className={
 							"form-group" +
@@ -117,7 +118,7 @@ class RegisterPage extends Component {
 							</div>
 						)}
 					</div>
-					<div className="form-group">
+					<div className="form-group text-center">
 						<button className="btn btn-primary">Register</button>
 						<Link to="/login" className="btn btn-link">
 							Login

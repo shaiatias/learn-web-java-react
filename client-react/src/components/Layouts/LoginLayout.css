@@ -1,4 +1,18 @@
+
+body {
+	background-color: #eee;
+}
+
 .form-content {
 	margin: auto;
+	width: 100%;
 	max-width: 400px;
+}
+
+.form-content form {
+	width: 100%;
+	background-color: white;
+	padding: 30px;
+	border: solid 1px #888;
+	border-radius: 10px;
 }
