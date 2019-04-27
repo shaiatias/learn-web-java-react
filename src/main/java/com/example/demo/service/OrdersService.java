@@ -1,9 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.domain.Cart;
-import com.example.demo.domain.Order;
-import com.example.demo.domain.OrderStatus;
-import com.example.demo.domain.PaymentRequest;
+import com.example.demo.domain.*;
 import com.example.demo.repository.CartsRepository;
 import com.example.demo.repository.OrdersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
+import java.util.Optional;
 
 @Service
 public class OrdersService {
@@ -33,5 +31,9 @@ public class OrdersService {
 
         return savedOrder;
 
+    }
+
+    public Optional<Order> getById(String id) {
+        return ordersRepository.findById(id);
     }
 }
