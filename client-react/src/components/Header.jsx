@@ -132,10 +132,20 @@ class Header extends Component {
 										{loggedIn && (
 											<Fragment>
 												<DropdownItem>
-													Profile
+													<NavLink
+														to={"/profile"}
+														tag={RouterNavLink}
+													>
+														Profile
+													</NavLink>
 												</DropdownItem>
 												<DropdownItem>
-													My orders
+													<NavLink
+														to={"/orders"}
+														tag={RouterNavLink}
+													>
+														My orders
+													</NavLink>
 												</DropdownItem>
 												<DropdownItem divider />
 												<DropdownItem

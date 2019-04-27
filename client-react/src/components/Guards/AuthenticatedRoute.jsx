@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import PropTypes from "prop-types";
-import {Redirect, Route} from "react-router-dom";
-import {connect} from "react-redux";
+import { Redirect, Route } from "react-router-dom";
+import { connect } from "react-redux";
 
 class AuthenticatedRoute extends Component {
 
@@ -25,7 +25,11 @@ class AuthenticatedRoute extends Component {
 
 	render() {
 
-		const {loggedIn, anonymousPath} = this.props;
+		const { loggingIn, loggedIn, anonymousPath } = this.props;
+
+		if (loggingIn) {
+			return <div>loading</div>;
+		}
 
 		if (!loggedIn) {
 
@@ -35,7 +39,7 @@ class AuthenticatedRoute extends Component {
 						<Redirect
 							to={{
 								pathname: anonymousPath,
-								state: {from: this.props.location}
+								state: { from: this.props.location }
 							}}
 						/>
 					}
@@ -43,7 +47,7 @@ class AuthenticatedRoute extends Component {
 			);
 		}
 
-		const {component: WrappedComponent, render: ComponentRenderFn, ...rest} = this.props;
+		const { component: WrappedComponent, render: ComponentRenderFn, ...rest } = this.props;
 
 		if (ComponentRenderFn) {
 
@@ -66,7 +70,8 @@ class AuthenticatedRoute extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => ({
-	loggedIn: state.authentication.loggedIn
+	loggedIn: state.authentication.loggedIn,
+	loggingIn: state.authentication.loggingIn,
 });
 
 export default connect(

@@ -12,6 +12,7 @@ import AuthenticatedRoute from "./components/Guards/AuthenticatedRoute";
 import ManagementRoute from "./components/Guards/ManagementRoute";
 import OrderDetailsPage from "./components/pages/OrderDetailsPage";
 import OrdersPage from "./components/pages/OrdersPage";
+import ProfilePage from "./components/pages/ProfilePage";
 
 const routes = auth => (
 	<Fragment>
@@ -47,6 +48,8 @@ const routes = auth => (
 				anonymousPath="/login"
 				component={CheckoutPage}
 			/>
+
+			<AuthenticatedRoute exact path="/profile" component={ProfilePage} />
 
 			<AuthenticatedRoute exact path="/orders" component={OrdersPage} />
 			<AuthenticatedRoute
