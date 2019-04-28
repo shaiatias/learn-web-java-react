@@ -75,25 +75,27 @@ const ProductList = props => {
 		<CardDeck className="products-rows">
 			<Row>
 				{props.products.map(product => (
-					<Col sm={3} xs={6}>
-						<Card
-							key={product.id}
-							className="p-0 my-4 mx-0 cursor-pointer"
-							onClick={() => props.navigateToProduct(product.id)}
-						>
-							<CardImg
-								top
-								width="100%"
-								src={product.imageUrl}
-								alt={product.description}
-							/>
-							<CardBody>
-								<CardTitle className="text-nowrap overflow-hidden">
-									{product.name}
-								</CardTitle>
-								<CardSubtitle>{product.price}$</CardSubtitle>
-							</CardBody>
-						</Card>
+					<Col md={3} sm={6} xs={12}>
+						{/* <Row> */}
+							<Card
+								key={product.id}
+								className="product-card p-0 mt-2 mb-4 mx-0 cursor-pointer"
+								onClick={() => props.navigateToProduct(product.id)}
+							>
+								<CardImg
+									top
+									width="100%"
+									src={product.imageUrl}
+									alt={product.description}
+								/>
+								<CardBody>
+									<CardTitle className="text-nowrap overflow-hidden ">
+										{product.name}
+									</CardTitle>
+									<CardSubtitle>{product.price}$</CardSubtitle>
+								</CardBody>
+							</Card>
+						{/* </Row> */}
 					</Col>
 				))}
 			</Row>

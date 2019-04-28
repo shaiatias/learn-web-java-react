@@ -24,15 +24,15 @@ class ViewProductPage extends Component {
 		const ProductEl = product ? (
 			<ProductPage product={product} addItemToCart={addItemToCart} />
 		) : (
-			<div>loading</div>
-		);
+				<div>loading</div>
+			);
 
 		return <HomepageLayout>{ProductEl}</HomepageLayout>;
 	}
 }
 
 const ProductPage = ({ product, addItemToCart }) => {
-	const [size, setSize] = useState("");
+	const [size, setSize] = useState(product.availableSizes[0]);
 
 	const handleMultiSelectChange = e => {
 		const selectedValues = Array.from(e.target.options)
