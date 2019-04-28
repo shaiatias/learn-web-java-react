@@ -8,7 +8,8 @@ import {
 	CardBody,
 	CardImg,
 	CardTitle,
-	CardSubtitle
+	CardSubtitle,
+	Row
 } from "reactstrap";
 
 import HomepageLayout from "../Layouts/HomepageLayout";
@@ -22,9 +23,23 @@ import { getProductByCategory } from "../../redux/reducers/ProductReducer";
 import "./ProductFilterPage.css";
 
 class ProductFilterPage extends Component {
+
+	category = null;
+
 	componentDidMount() {
 		const { category } = this.props;
+		this.category = category;
+
 		this.props.loadProductByCategories([category]);
+	}
+
+	componentWillReceiveProps(props, context) {
+		const { category } = props;
+
+		if (this.category !== category) {
+			this.category = category;
+			this.props.loadProductByCategories([category]);
+		}
 	}
 
 	render() {
@@ -43,8 +58,8 @@ class ProductFilterPage extends Component {
 				navigateToProduct={navigateToProduct}
 			/>
 		) : (
-			<div>loading</div>
-		);
+				<div>loading</div>
+			);
 
 		return (
 			<HomepageLayout>
@@ -58,28 +73,30 @@ class ProductFilterPage extends Component {
 const ProductList = props => {
 	return (
 		<CardDeck className="products-rows">
-			{props.products.map(product => (
-				<Col sm={3}>
-					<Card
-						key={product.id}
-						className="p-0 my-4 mx-0 cursor-pointer"
-						onClick={() => props.navigateToProduct(product.id)}
-					>
-						<CardImg
-							top
-							width="100%"
-							src={product.imageUrl}
-							alt={product.description}
-						/>
-						<CardBody>
-							<CardTitle className="text-nowrap overflow-hidden">
-								{product.name}
-							</CardTitle>
-							<CardSubtitle>{product.price}$</CardSubtitle>
-						</CardBody>
-					</Card>
-				</Col>
-			))}
+			<Row>
+				{props.products.map(product => (
+					<Col sm={3} xs={6}>
+						<Card
+							key={product.id}
+							className="p-0 my-4 mx-0 cursor-pointer"
+							onClick={() => props.navigateToProduct(product.id)}
+						>
+							<CardImg
+								top
+								width="100%"
+								src={product.imageUrl}
+								alt={product.description}
+							/>
+							<CardBody>
+								<CardTitle className="text-nowrap overflow-hidden">
+									{product.name}
+								</CardTitle>
+								<CardSubtitle>{product.price}$</CardSubtitle>
+							</CardBody>
+						</Card>
+					</Col>
+				))}
+			</Row>
 		</CardDeck>
 	);
 };

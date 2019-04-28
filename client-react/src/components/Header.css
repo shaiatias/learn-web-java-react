@@ -1,0 +1,18 @@
+
+header {
+	background-color: #2d2d2d;
+	color: #fff;
+}
+
+header a {
+	color: #fff;
+}
+
+header .dropdown-menu .nav-link {
+	padding: 1px;
+	color: #222;
+}
+
+header .navbar-toggler {
+	color: #fff;
+}

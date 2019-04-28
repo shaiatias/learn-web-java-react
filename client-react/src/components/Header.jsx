@@ -20,6 +20,8 @@ import {
 } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+import "./Header.css";
+
 import { requestLogout } from "../redux/actions/authentication";
 import { getCartItemCount } from "../redux/reducers/CartReducer";
 import { loadCart } from "../redux/actions/cart";
@@ -46,13 +48,11 @@ class Header extends Component {
 	render() {
 		const { loggedIn, requestLogout, cartCount } = this.props;
 		return (
-			<div className="bg-light">
+			<header>
 				<Container fluid>
 					<Navbar
-						color="light"
-						light
 						expand="sm"
-						className={"px-4 py-3"}
+						className={"px-3 py-2"}
 					>
 						<NavbarBrand to="/" tag={RouterNavLink}>
 							asos
@@ -163,7 +163,7 @@ class Header extends Component {
 						</Collapse>
 					</Navbar>
 				</Container>
-			</div>
+			</header>
 		);
 	}
 }

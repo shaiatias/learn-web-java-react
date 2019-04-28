@@ -5,12 +5,16 @@ import { NavLink as RouterNavLink } from "react-router-dom";
 import "./Footer.css";
 
 export default () => (
-	<div className={"bg-dark footer"}>
-		<Container className={"py-5 px-4"}>
+	<footer>
+		<Container className={"py-2 px-4"}>
 			<Row>
-				<Col md={4}>Icon</Col>
 				<Col md={4}>
-					<Nav horizontal>
+					<div class="nav-link">
+						© 2019 ASOS
+					</div>
+				</Col>
+				<Col md={4}>
+					{/* <Nav horizontal>
 						<NavItem>
 							<NavLink to="/category/new" tag={RouterNavLink}>
 								New
@@ -31,7 +35,7 @@ export default () => (
 								Men
 							</NavLink>
 						</NavItem>
-					</Nav>
+					</Nav> */}
 				</Col>
 				{/* <Col md={3}>
 					<Nav vertical>
@@ -61,5 +65,5 @@ export default () => (
 				</Col>
 			</Row>
 		</Container>
-	</div>
+	</footer>
 );
