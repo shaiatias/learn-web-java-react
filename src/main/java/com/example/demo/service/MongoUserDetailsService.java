@@ -54,19 +54,19 @@ public class MongoUserDetailsService implements UserDetailsService {
 
     private void handleCartMerge(com.example.demo.domain.User user) {
 
-        Cart cart = cartService.getCart(userService.getUserIdFromRequest(request));
+        Cart oldCart = cartService.getCart(userService.getUserIdFromRequest(request));
         Cart newCart = cartService.getCart(user.getEmail());
 
-        cartService.cartsRepository.save(mergeCart(cart, newCart));
+        cartService.cartsRepository.save(mergeCart(oldCart, newCart));
 
         // reset old cart
-        cartService.cartsRepository.delete(cart);
+        cartService.cartsRepository.delete(oldCart);
 
     }
 
-    private Cart mergeCart(Cart cart, Cart newCart) {
+    private Cart mergeCart(Cart oldCart , Cart newCart) {
 
-        for (ProductInCart p : cart.getProducts().values()) {
+        for (ProductInCart p : oldCart .getProducts().values()) {
 
             // item is new
             if (newCart.getProducts().get(p.getProductId()) == null) {
@@ -76,7 +76,7 @@ public class MongoUserDetailsService implements UserDetailsService {
             // old items, combine quantity
             else {
 
-                ProductInCart productInCart = cart.getProducts().get(p.getProductId());
+                ProductInCart productInCart = oldCart .getProducts().get(p.getProductId());
                 ProductInCart newProductInCart = newCart.getProducts().get(p.getProductId());
 
                 newProductInCart.setQuantity(
