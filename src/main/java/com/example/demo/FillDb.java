@@ -31,10 +31,16 @@ public class FillDb {
 
     @PostConstruct
     public void loaded() {
-        createProducts();
-        createAdmin();
-        createCustomer();
-        createSeller();
+
+        new Thread(() -> {
+
+            createProducts();
+            createAdmin();
+            createCustomer();
+            createSeller();
+
+        }).start();
+
     }
 
     private void createAdmin() {

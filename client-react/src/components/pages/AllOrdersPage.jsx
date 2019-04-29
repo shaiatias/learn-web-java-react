@@ -5,13 +5,13 @@ import { push } from "connected-react-router";
 import { Table } from "reactstrap";
 
 import { getOrdersArr } from "../../redux/reducers/OrdersReducer";
-import { loadMyOrders } from "../../redux/actions/orders";
+import { loadAllOrders } from "../../redux/actions/orders";
 import HomepageLayout from "../Layouts/HomepageLayout";
 
-class OrdersPage extends Component {
+class AllOrdersPage extends Component {
 
 	componentDidMount() {
-		this.props.loadMyOrders();
+		this.props.loadAllOrders();
 	}
 
 	render() {
@@ -19,7 +19,7 @@ class OrdersPage extends Component {
 
 		return (
 			<HomepageLayout className="py-3">
-				<h1>My Orders</h1>
+				<h1>All Orders</h1>
 
 				<Table bordered>
 					<thead>
@@ -50,11 +50,11 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-	loadMyOrders: () => dispatch(loadMyOrders()),
+	loadAllOrders: () => dispatch(loadAllOrders()),
 	goToOrder: (id) => dispatch(push(`/order/${id}`)),
 });
 
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(OrdersPage);
+)(AllOrdersPage);

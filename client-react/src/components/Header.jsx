@@ -46,7 +46,13 @@ class Header extends Component {
 	};
 
 	render() {
-		const { loggedIn, requestLogout, cartCount } = this.props;
+		const { loggedIn, requestLogout, cartCount, roles } = this.props;
+		
+		const roleSet = new Set(roles);
+		
+		const isAdmin = roleSet.has("ROLE_ADMIN");
+		const isSeller = roleSet.has("ROLE_SELLER");
+
 		return (
 			<header>
 				<Container fluid>
@@ -112,11 +118,35 @@ class Header extends Component {
 													Login
 												</NavLink>
 												<NavLink
-													to={"/signup"}
+													to={"/register"}
 													tag={RouterNavLink}
 												>
-													Signup
+													Register
 												</NavLink>
+											</Fragment>
+										)}
+										{isSeller && (
+											<Fragment>
+												<DropdownItem>
+													<NavLink
+														to={"/manage/product"}
+														tag={RouterNavLink}
+													>
+														Add product
+													</NavLink>
+												</DropdownItem>
+											</Fragment>
+										)}
+										{isAdmin && (
+											<Fragment>
+												<DropdownItem>
+													<NavLink
+														to={"/manage/orders"}
+														tag={RouterNavLink}
+													>
+														All orders
+													</NavLink>
+												</DropdownItem>
 											</Fragment>
 										)}
 										{loggedIn && (
@@ -170,6 +200,7 @@ class Header extends Component {
 
 const mapStateToProps = state => ({
 	loggedIn: state.authentication.loggedIn,
+	roles: (state.authentication.user && state.authentication.user.roles) || [],
 	cartCount: getCartItemCount(state.cart)
 });
 

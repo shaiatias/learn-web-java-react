@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -35,5 +36,13 @@ public class OrdersService {
 
     public Optional<Order> getById(String id) {
         return ordersRepository.findById(id);
+    }
+
+    public List<Order> getOrdersByUserId(String userId) {
+        return ordersRepository.findByUserId(userId);
+    }
+
+    public List<Order> getAllOrders() {
+        return ordersRepository.findAll();
     }
 }

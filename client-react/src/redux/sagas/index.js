@@ -38,8 +38,8 @@ import {
 	confirmPaymentFlow
 } from "./CartSagas";
 
-import {loadOrderFlow} from "./OrdersSagas";
-import { LOAD_ORDER_REQUEST } from "../actions/orders";
+import {loadOrderFlow, loadMyOrdersFlow, loadAllOrdersFlow} from "./OrdersSagas";
+import { LOAD_ORDER_REQUEST, LOAD_MY_ORDERS_REQUEST, LOAD_ALL_ORDERS_REQUEST } from "../actions/orders";
 
 function* root() {
 	yield takeLatest(REGISTER_REQUEST, registerFlow);
@@ -49,7 +49,9 @@ function* root() {
 	yield takeLatest(
 		LOAD_FILTERED_PRODUCTS_REQUEST,
 		getProductByCategoriesFlow
-	);
+		);
+	yield takeLatest(LOAD_MY_ORDERS_REQUEST, loadMyOrdersFlow);
+	yield takeLatest(LOAD_ALL_ORDERS_REQUEST, loadAllOrdersFlow);
 
 	yield takeLatest(UPDATE_QUANTITY_REQUEST, updateCartFlow);
 	yield takeLatest(CLEAR_CART_REQUEST, clearCartFlow);

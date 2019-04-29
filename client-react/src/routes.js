@@ -13,6 +13,7 @@ import ManagementRoute from "./components/Guards/ManagementRoute";
 import OrderDetailsPage from "./components/pages/OrderDetailsPage";
 import OrdersPage from "./components/pages/OrdersPage";
 import ProfilePage from "./components/pages/ProfilePage";
+import AllOrdersPage from "./components/pages/AllOrdersPage";
 
 const routes = auth => (
 	<Fragment>
@@ -60,9 +61,16 @@ const routes = auth => (
 
 			<ManagementRoute
 				exact
-				requiredRole={"ROLE_ADMIN"}
+				requiredRole={"ROLE_SELLER"}
 				path="/manage/product/:itemId?"
 				component={CreateProductPage}
+			/>
+			
+			<ManagementRoute
+				exact
+				requiredRole={"ROLE_ADMIN"}
+				path="/manage/orders"
+				component={AllOrdersPage}
 			/>
 		</Switch>
 	</Fragment>

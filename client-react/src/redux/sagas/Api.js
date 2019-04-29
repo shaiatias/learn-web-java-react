@@ -89,6 +89,7 @@ export const Api = {
 			throw Error(err);
 		}
 	},
+
 	*loadCart() {
 		const res = yield fetch(`/api/carts`, {
 			method: "GET"
@@ -101,6 +102,7 @@ export const Api = {
 			throw Error(err);
 		}
 	},
+
 	*createProduct(
 		name,
 		brand,
@@ -135,6 +137,7 @@ export const Api = {
 			throw Error(err);
 		}
 	},
+
 	*getProductById(id) {
 		const res = yield fetch(`/api/products/${id}`, {
 			method: "GET",
@@ -150,6 +153,7 @@ export const Api = {
 			throw Error(err);
 		}
 	},
+
 	*getProductByCategories(categories) {
 		const url = `/api/products?categories=${encodeURIComponent(
 			categories
@@ -172,6 +176,42 @@ export const Api = {
 	
 	*getOrderById(orderId) {
 		const url = `/api/orders/${orderId}`;
+
+		const res = yield fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	
+	*getMyOrders() {
+		const url = `/api/orders`;
+
+		const res = yield fetch(url, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json"
+			}
+		});
+
+		if (res.ok) {
+			return yield res.json();
+		} else {
+			const err = yield res.text();
+			throw Error(err);
+		}
+	},
+	
+	*getAllOrders() {
+		const url = `/api/orders/all`;
 
 		const res = yield fetch(url, {
 			method: "GET",

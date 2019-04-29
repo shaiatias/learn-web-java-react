@@ -4,10 +4,14 @@ import com.example.demo.domain.Order;
 import com.example.demo.domain.Product;
 import com.example.demo.repository.ProductsRepository;
 import com.example.demo.service.OrdersService;
+import com.example.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PostAuthorize;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Optional;
 
@@ -18,23 +22,21 @@ public class OrdersController {
     @Autowired
     OrdersService ordersService;
 
-//    @PostMapping
-//    public ResponseEntity<Product> create(@RequestBody Product product) {
-//        product.setId(null);
-//        Product savedPro = productsRepository.save(product);
-//        return ResponseEntity.ok(savedPro);
-//    }
+    @Autowired
+    UserService userService;
 
-//    @PutMapping
-//    public ResponseEntity<Product> update(@RequestBody Product product) {
-//        Product savedPro = productsRepository.save(product);
-//        return ResponseEntity.ok(savedPro);
-//    }
+    @PreAuthorize("isAuthenticated()")
+    @GetMapping
+    public List<Order> getMy(HttpServletRequest request) {
+        String userId = userService.getUserIdFromRequest(request);
+        return ordersService.getOrdersByUserId(userId);
+    }
 
-//    @GetMapping
-//    public List<Product> getAll() {
-//
-//    }
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @GetMapping("/all")
+    public List<Order> getAll(HttpServletRequest request) {
+        return ordersService.getAllOrders();
+    }
 
     @GetMapping("/{id}")
     public Optional<Order> getById(@PathVariable String id) {
